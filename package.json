@@ -1,0 +1,16 @@
+{
+  "name": "handler-book",
+  "version": "0.0.1",
+  "description": "Monorepo for handler-book site",
+  "main": "packages/back/src/main.ts",
+  "author": "Kolobok123409 <sova123409@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "jest": "^27.0.4",
+    "lerna": "^4.0.0"
+  }
+}

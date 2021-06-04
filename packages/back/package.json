@@ -1,8 +1,8 @@
 {
-  "name": "@handler-book/back",
+  "name": "@hb/back",
   "version": "1.0.0",
   "description": "",
-  "author": "Kolobok123409 <sova123409@gmail.com>",
+  "author": "Kolobok12309 <sova123409@gmail.com>",
   "private": true,
   "license": "MIT",
   "main": "src/main.ts",
@@ -12,6 +12,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "cross-env DEBUG=app:* nest build --webpack --webpackPath webpack-hmr.config.js --watch",
+    "dev": "yarn run start:dev",
     "start:debug": "nest start --debug --watch",
     "start:prod": "cross-env NODE_ENV=production node dist/src/main",
     "start:prod:debug": "cross-env NODE_ENV=production DEBUG=app:* node dist/src/main",
@@ -69,7 +70,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
     "swagger-ui-express": "^4.1.6",
-    "typeorm": "^0.2.32"
+    "typeorm": "^0.2.32",
+    "@hb/types": "^1.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.6.0",

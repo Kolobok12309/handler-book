@@ -16,7 +16,7 @@ declare const module: any;
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 const SENTRY_DSN = process.env.SENTRY_DSN;
-const log = debug('app:init');
+const log = debug('@hb/back:init');
 
 async function bootstrap() {
   log(`Init application environment:${process.env.NODE_ENV}`);

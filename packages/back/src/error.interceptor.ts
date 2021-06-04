@@ -12,7 +12,7 @@ import debug from 'debug';
 
 import { version } from '~/package.json';
 
-const log = debug('app:error');
+const log = debug('@hb/back:error');
 const isProd = process.env.NODE_ENV === 'production';
 
 @Catch()

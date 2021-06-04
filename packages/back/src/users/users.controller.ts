@@ -13,7 +13,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiTags } from '@nestjs/swagger';
 import debug from 'debug';
 
-const log = debug('app:users');
+const log = debug('@hb/back:users');
 
 @ApiTags('Users')
 @Controller('users')

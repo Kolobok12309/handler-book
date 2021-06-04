@@ -1,11 +1,16 @@
 {
-  "name": "handler-book",
+  "name": "hb",
   "version": "0.0.1",
   "description": "Monorepo for handler-book site",
   "main": "packages/back/src/main.ts",
-  "author": "Kolobok123409 <sova123409@gmail.com>",
+  "author": "Kolobok12309 <sova123409@gmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "build": "lerna run build --stream",
+    "start": "lerna run start --stream",
+    "dev": "lerna run dev --stream"
+  },
   "workspaces": [
     "packages/*"
   ],

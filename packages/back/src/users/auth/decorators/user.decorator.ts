@@ -1,6 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-
-import { TokenUser } from '../interfaces';
+import { TokenUser } from '@hb/types';
 
 export const User = createParamDecorator(
   (data: unknown, context: ExecutionContext): TokenUser => {

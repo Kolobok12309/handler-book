@@ -4,8 +4,7 @@ import {
   ApiForbiddenResponse,
   ApiBearerAuth,
 } from '@nestjs/swagger';
-
-import { Role } from '../..';
+import { Role } from '@hb/types';
 
 import { RolesGuard, JwtGuard } from '../guards';
 

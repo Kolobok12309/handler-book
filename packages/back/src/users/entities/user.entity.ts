@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
 } from 'typeorm';
 
-import { Role, User } from '../interfaces';
+import { Role, User } from '@hb/types';
 
 @Entity('users', {
   orderBy: {

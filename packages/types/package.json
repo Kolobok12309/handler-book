@@ -1,0 +1,16 @@
+{
+  "name": "@hb/types",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Kolobok12309 <sova123409@gmail.com>",
+  "private": true,
+  "license": "MIT",
+  "main": "index.ts",
+  "engines": {
+    "node": "12.x",
+    "yarn": "1.x"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}

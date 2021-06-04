@@ -5,12 +5,23 @@
   "author": "Kolobok12309 <sova123409@gmail.com>",
   "private": true,
   "license": "MIT",
-  "main": "index.ts",
+  "main": "/dist/index.js",
+  "types": "/dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "yarn run build",
+    "prebuild": "yarn run clean",
+    "clean": "rimraf dist"
+  },
   "engines": {
     "node": "12.x",
     "yarn": "1.x"
   },
   "devDependencies": {
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "rimraf": "^3.0.2"
   }
 }

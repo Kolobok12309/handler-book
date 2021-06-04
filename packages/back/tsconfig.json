@@ -1,22 +1,11 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2017",
     "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
-    "sourceMap": true,
-    "inlineSources": true,
-    "sourceRoot": "/",
+    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "src/*"
+        "*/src"
       ],
       "~/*": [
         "*"

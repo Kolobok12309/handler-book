@@ -14,7 +14,7 @@ export const DbModule = TypeOrmModule.forRootAsync({
         configService.get<string | boolean>('DB_SYNC', !isProd) === 'true',
       dropSchema: false,
       logging: true,
-      autoLoadEntities: true,
+      autoLoadEntities: false,
       ssl: configService.get<string>('DB_SSL') === 'true',
       keepConnectionAlive: true,
     } as PostgresConnectionOptions;

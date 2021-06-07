@@ -1,4 +1,5 @@
 export * from './entities';
-export * from './auth';
+export * from './decorators';
+export * from './dto';
 export { UsersModule } from './users.module';
-export { UsersService } from './users.service';
+export { UsersService } from './services/users.service';

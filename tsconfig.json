@@ -1,16 +1,14 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
     "target": "es2017",
-    "incremental": true,
+    "moduleResolution": "node",
+    "strict": false,
     "sourceMap": true,
-    "inlineSources": true,
-    "sourceRoot": "/"
+    "inlineSources": true
   }
 }

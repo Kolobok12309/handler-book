@@ -9,6 +9,7 @@
     "moduleResolution": "node",
     "strict": false,
     "sourceMap": true,
-    "inlineSources": true
+    "inlineSources": true,
+    "preserveSymlinks": true
   }
 }

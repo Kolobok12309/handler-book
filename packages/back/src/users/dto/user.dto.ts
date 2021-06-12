@@ -41,10 +41,8 @@ export class UserDto implements Partial<User> {
   @Max(Role.Admin)
   @ApiProperty({
     description: 'User role',
-    required: false,
-    default: Role.User,
   })
-  role?: Role;
+  role?: Role = Role.User;
 
   @IsString()
   @MinLength(PASS_MIN_LENGTH)

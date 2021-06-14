@@ -3,9 +3,12 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 import { Role, User } from '@hb/types';
+
+import { RefreshTokenEntity } from './refresh-token.entity';
 
 @Entity('users', {
   orderBy: {
@@ -31,4 +34,7 @@ export class UserEntity implements User {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @OneToMany(() => RefreshTokenEntity, (token) => token.user)
+  tokens: RefreshTokenEntity[];
 }

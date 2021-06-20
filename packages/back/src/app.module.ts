@@ -6,6 +6,6 @@ import { DbModule } from './db';
 import { StorageModule } from './storage';
 
 @Module({
-  imports: [DbModule, UsersModule, StorageModule, ConfigModule.forRoot()],
+  imports: [ConfigModule.forRoot(), DbModule, UsersModule, StorageModule],
 })
 export class AppModule {}

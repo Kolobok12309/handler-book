@@ -8,6 +8,8 @@ import {
 
 import { Role, User } from '@hb/types';
 
+import { FileEntity } from '@/storage/entities';
+
 import { RefreshTokenEntity } from './refresh-token.entity';
 
 @Entity('users', {
@@ -37,4 +39,7 @@ export class UserEntity implements User {
 
   @OneToMany(() => RefreshTokenEntity, (token) => token.user)
   tokens: RefreshTokenEntity[];
+
+  @OneToMany(() => FileEntity, (file) => file.uploadedBy)
+  files: FileEntity[];
 }

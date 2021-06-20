@@ -1,5 +1,5 @@
 export interface UploadFile {
-  name: string;
+  key: string;
 
   path: string;
 

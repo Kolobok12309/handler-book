@@ -11,13 +11,7 @@ export class EncodeStorage implements Storage {
 
     const dataUrl = `data:${mimetype};base64,${encoded}`;
 
-    return {
-      url: dataUrl,
-    };
-  }
-
-  getAll() {
-    return [];
+    return dataUrl;
   }
 
   del() {

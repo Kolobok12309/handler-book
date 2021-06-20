@@ -1,0 +1,1 @@
+export { BucketStorage } from './storage';

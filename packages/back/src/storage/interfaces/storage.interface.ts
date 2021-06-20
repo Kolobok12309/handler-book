@@ -1,12 +1,9 @@
-import { LoadedFile } from './loaded-file.interface';
 import { UploadFile } from './upload-file.interface';
 
 export interface Storage {
-  add(file: UploadFile): LoadedFile | Promise<LoadedFile>;
+  init?();
 
-  get?(id: number | string): LoadedFile | Promise<LoadedFile>;
+  add(file: UploadFile, category: string): string | Promise<string>;
 
-  getAll(): LoadedFile[] | Promise<LoadedFile[]>;
-
-  del(id: number | string): boolean | Promise<boolean>;
+  del(key: string, category: string): boolean | Promise<boolean>;
 }

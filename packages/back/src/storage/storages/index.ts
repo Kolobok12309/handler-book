@@ -1,2 +1,2 @@
-export { BucketStorage } from './bucket.storage';
+export { BucketStorage } from './bucket';
 export { EncodeStorage } from './encode.storage';

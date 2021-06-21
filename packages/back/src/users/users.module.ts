@@ -6,10 +6,17 @@ import { JwtModule } from '@nestjs/jwt';
 import { UsersService, AuthService, TokenService } from './services';
 import { UsersController, AuthController } from './controllers';
 import { UserEntity, RefreshTokenEntity } from './entities';
+import { JwtStrategy, JwtRefreshStrategy } from './strategies';
 
 @Module({
   controllers: [UsersController, AuthController],
-  providers: [UsersService, AuthService, TokenService],
+  providers: [
+    UsersService,
+    AuthService,
+    TokenService,
+    JwtRefreshStrategy,
+    JwtStrategy,
+  ],
   imports: [
     ConfigModule,
     TypeOrmModule.forFeature([UserEntity, RefreshTokenEntity]),

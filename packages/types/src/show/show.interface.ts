@@ -23,7 +23,7 @@ export interface Show {
 
   resultText: string;
 
-  resultTitles: Title[];
+  resultTitles: number[];
 
   files: File[];
 

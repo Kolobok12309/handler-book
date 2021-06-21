@@ -2,6 +2,8 @@ export interface Title {
   id: number;
 
   name: string;
+
+  count?: number;
 }
 
 export const titles: Title[] = [

@@ -1,16 +1,16 @@
 import { File } from '@/storage';
 import { Show } from '@/show';
 
-
 import { Sex } from './sex.interface';
 import { Person } from './person.interface';
 import { Title } from './title.interface';
 import { DogClass } from './dog-class.interface';
+import { Breed } from './breed'
 
 export interface Dog {
   id: number;
 
-  breed: number | string;
+  breed: Breed;
 
   fullname: string;
 
@@ -24,8 +24,6 @@ export interface Dog {
 
   color: string;
 
-  breedGroup: number | string;
-
   owner: Person | string;
 
   breeder: Person | string;
@@ -34,7 +32,7 @@ export interface Dog {
 
   description: string;
 
-  avatar: string;
+  avatar: File;
 
   class: DogClass;
 

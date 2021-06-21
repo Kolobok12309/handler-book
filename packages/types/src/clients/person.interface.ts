@@ -1,5 +1,13 @@
+import { File } from '@/storage';
+
 export interface Person {
   id: number;
+
+  isClient: boolean;
+
+  isJudge: boolean;
+
+  isBreeder: boolean;
 
   fullname: string;
 
@@ -9,5 +17,5 @@ export interface Person {
 
   description: string;
 
-  avatar: string;
+  avatar: File;
 }

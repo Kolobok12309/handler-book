@@ -4,8 +4,9 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users';
 import { DbModule } from './db';
 import { StorageModule } from './storage';
+import { ClientsModule } from './clients/clients.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), DbModule, UsersModule, StorageModule],
+  imports: [ConfigModule.forRoot(), DbModule, UsersModule, StorageModule, ClientsModule],
 })
 export class AppModule {}

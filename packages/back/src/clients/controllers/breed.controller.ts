@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Get } from '@nestjs/common';
 import { ApiBody, ApiNotFoundResponse } from '@nestjs/swagger';
 
 import { Role } from '@hb/types';
@@ -18,5 +18,10 @@ export class BreedController {
   @ApiNotFoundResponse()
   async add(@Body() createBreedDto: CreateBreedDto) {
     return this.breedService.add(createBreedDto);
+  }
+
+  @Get()
+  async getAll() {
+    return this.breedService.getAll();
   }
 }

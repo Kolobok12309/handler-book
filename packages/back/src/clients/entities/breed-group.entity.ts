@@ -1,5 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
+import { BreedGroup } from '@hb/types';
+
 import { BreedEntity } from './breed.entity';
 
 @Entity('breed-groups', {
@@ -8,7 +10,7 @@ import { BreedEntity } from './breed.entity';
     name: 'ASC',
   },
 })
-export class BreedGroupEntity {
+export class BreedGroupEntity implements BreedGroup {
   @PrimaryGeneratedColumn()
   id: number;
 

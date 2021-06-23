@@ -15,8 +15,9 @@ export class BreedDto implements Partial<Breed> {
   @ApiProperty({
     description: 'Fci group of breed',
     default: null,
+    required: false,
   })
-  fci?: number;
+  fci: number;
 
   @IsString()
   @ApiProperty({

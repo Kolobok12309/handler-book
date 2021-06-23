@@ -5,7 +5,7 @@ export interface Breed {
 
   name: string;
 
-  fci?: number;
+  fci: number;
 
   group?: BreedGroup
 }

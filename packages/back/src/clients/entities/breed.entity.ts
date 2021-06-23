@@ -3,7 +3,7 @@ import {
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
-  JoinColumn,
+  RelationId,
 } from 'typeorm';
 
 import { BreedGroupEntity } from './breed-group.entity';
@@ -30,8 +30,8 @@ export class BreedEntity {
   @ManyToOne(() => BreedGroupEntity, (group) => group.breeds, {
     onDelete: 'CASCADE',
   })
-  @JoinColumn({ name: 'groupId' })
   group?: BreedGroupEntity;
 
+  @RelationId((breed: BreedEntity) => breed.group)
   groupId: number;
 }

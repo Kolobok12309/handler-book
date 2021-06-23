@@ -23,15 +23,15 @@ export class StorageController {
     private readonly storageService: StorageService,
   ) {}
 
-  // @Auth([Role.Admin, Role.User])
+  @Auth([Role.Admin, Role.User])
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   async upload(
     @UploadedFile() file: Express.Multer.File,
-    // @User() user: TokenUser,
+    @User() user: TokenUser,
   ) {
     const uploaded = await this.storageService.add(file, {
-      userId: null,
+      userId: user.id,
       category: FileCategory.images,
     });
 

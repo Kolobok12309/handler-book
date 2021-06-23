@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { BreedService, BreedGroupService } from './services';
-import { BreedController } from './controllers';
+import { BreedController, BreedGroupController } from './controllers';
 import {
   BreedEntity,
   BreedGroupEntity,
@@ -11,7 +11,7 @@ import {
 } from './entities';
 
 @Module({
-  controllers: [BreedController],
+  controllers: [BreedController, BreedGroupController],
   providers: [BreedService, BreedGroupService],
   imports: [
     TypeOrmModule.forFeature([

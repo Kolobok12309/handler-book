@@ -5,21 +5,29 @@ import {
   ManyToOne,
   ManyToMany,
   JoinTable,
+  Entity,
 } from 'typeorm';
 
 import { Dog, Sex } from '@hb/types';
 
 import { UserEntity } from '@/users';
 import { FileEntity } from '@/storage';
+
 import { PersonEntity } from './person.entity';
 import { BreedEntity } from './breed.entity';
 
-export class DogEntity implements Exclude<Dog, 'titles' | 'class' | 'shows'> {
+@Entity('dogs', {
+  orderBy: {
+    id: 'DESC',
+    name: 'ASC',
+  },
+})
+export class DogEntity implements Omit<Dog, 'titles' | 'class' | 'shows'> {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ default: '' })
-  fullname?: string;
+  fullname: string;
 
   @Column()
   name: string;
@@ -31,7 +39,7 @@ export class DogEntity implements Exclude<Dog, 'titles' | 'class' | 'shows'> {
     onDelete: 'SET NULL',
     nullable: true,
   })
-  breed?: BreedEntity;
+  breed: BreedEntity;
 
   @OneToOne(() => FileEntity, {
     onDelete: 'SET NULL',

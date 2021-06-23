@@ -22,7 +22,6 @@ export class BreedEntity {
   name: string;
 
   @Column({
-    type: 'int',
     unique: true,
     nullable: true,
   })

@@ -12,6 +12,12 @@ export class BreedGroupEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({
+    unique: true,
+    nullable: true,
+  })
+  fci: number;
+
   @Column()
   name: string;
 

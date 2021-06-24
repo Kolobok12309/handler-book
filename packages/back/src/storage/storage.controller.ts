@@ -9,7 +9,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags } from '@nestjs/swagger';
 import { Express } from 'express';
 
-import { FileCategory, Role, TokenUser } from '@hb/types';
+import { FileCategory, Role } from '@hb/types';
 
 import { Auth, User } from '@/users';
 
@@ -28,10 +28,10 @@ export class StorageController {
   @UseInterceptors(FileInterceptor('file'))
   async upload(
     @UploadedFile() file: Express.Multer.File,
-    @User() user: TokenUser,
+    @User('id') userId: number,
   ) {
     const uploaded = await this.storageService.add(file, {
-      userId: user.id,
+      userId: userId,
       category: FileCategory.images,
     });
 

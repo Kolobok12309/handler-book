@@ -21,8 +21,7 @@ services:
       - 3000:3000
     depends_on:
       - db
-      - minio1
-      - minio2
+      - minio
 
   adminer:
     image: adminer
@@ -32,34 +31,16 @@ services:
     depends_on:
       - db
 
-  minio1:
+  minio:
     image: minio/minio
     environment:
       MINIO_ACCESS_KEY: minio
       MINIO_SECRET_KEY: minio123
     volumes:
-      - ./uploads/s3/data1-1:/data1
-      - ./uploads/s3/data1-2:/data2
+      - ./uploads/s3:/data
     ports:
       - '9000:9000'
-    command: server http://minio{1...2}/data{1...2}
-    healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
-      interval: 30s
-      timeout: 20s
-      retries: 3
-
-  minio2:
-    image: minio/minio
-    environment:
-      MINIO_ACCESS_KEY: minio
-      MINIO_SECRET_KEY: minio123
-    volumes:
-      - ./uploads/s3/data2-1:/data1
-      - ./uploads/s3/data2-2:/data2
-    ports:
-      - '9001:9000'
-    command: server http://minio{1...2}/data{1...2}
+    command: server /data
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
       interval: 30s

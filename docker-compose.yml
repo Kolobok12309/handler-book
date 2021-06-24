@@ -1,6 +1,36 @@
 version: '3.1'
 
 services:
+  back:
+    build:
+      context: ./
+      target: back
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_SYNC: 'true'
+      DB_USER: postgres
+      DB_PASS: example
+      DB_NAME: postgres
+      HOST: 0.0.0.0
+      PORT: 3000
+      SENTRY_DSN: https://6b5ae4fd5e444aad8dd38982913a3041@o568803.ingest.sentry.io/5791393
+      DEBUG: '@hb/back:*'
+      JWT_SECRET: my_jwt_secret
+      STATIC_PATH: /tmp/uploads
+      S3: 'true'
+      S3_ACCESS_KEY: minio
+      S3_SECRET_ACCESS_KEY: minio123
+      S3_URL: http://minio:9000
+      S3_BUCKET: my-test-bucket
+    volumes:
+      - s3_data:/user/src/packages/back/uploads/s3
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+      - minio
+
   db:
     image: postgres
     restart: always
@@ -11,23 +41,13 @@ services:
     ports:
       - 5432:5432
 
-  back:
-    build:
-      context: ./packages/back
-    environment:
-      DB_HOST: db
-      HOST: 0.0.0.0
-      S3: true
-      S3_ACCESS_KEY: minio
-      S3_SECRET_ACCESS_KEY: minio123
-      S3_URL: http://localhost:9000
-      S3_BUCKET: my-test-bucket
-
+  adminer:
+    image: adminer
+    restart: always
     ports:
-      - 3000:3000
+      - 8080:8080
     depends_on:
       - db
-      - minio
 
   minio:
     image: minio/minio
@@ -35,7 +55,7 @@ services:
       MINIO_ACCESS_KEY: minio
       MINIO_SECRET_KEY: minio123
     volumes:
-      - ./packages/back/uploads/s3:/data
+      - s3_data:/data
     ports:
       - '9000:9000'
     command: server /data
@@ -45,14 +65,7 @@ services:
       timeout: 20s
       retries: 3
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-    depends_on:
-      - db
-
 volumes:
+  s3_data:
   pg_data:
     driver: local

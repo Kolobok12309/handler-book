@@ -11,3 +11,6 @@ coverage
 docker-compose*
 .prettier
 README
+uploads/tmp
+Procfile
+tsconfig.tsbuildinfo

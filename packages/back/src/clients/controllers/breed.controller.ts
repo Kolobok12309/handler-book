@@ -1,13 +1,27 @@
-import { Body, Controller, Post, Get } from '@nestjs/common';
-import { ApiBody, ApiNotFoundResponse } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
+import {
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 import { Role } from '@hb/types';
 
 import { Auth } from '@/users';
 
-import { CreateBreedDto } from '../dto';
+import { CreateBreedDto, UpdateBreedDto } from '../dto';
 import { BreedService } from '../services';
 
+@ApiTags('Breed')
 @Controller('breed')
 export class BreedController {
   constructor(private readonly breedService: BreedService) {}
@@ -20,7 +34,23 @@ export class BreedController {
     return this.breedService.add(createBreedDto);
   }
 
+  @Auth([Role.Admin])
+  @Patch(':id')
+  async update(
+    @Param('id') id: number,
+    @Body() updateBreedDto: UpdateBreedDto,
+  ) {
+    return this.breedService.update(id, updateBreedDto);
+  }
+
+  @Auth([Role.Admin])
+  @Delete(':id')
+  async delete(@Param('id') id: number) {
+    return this.breedService.del(id);
+  }
+
   @Get()
+  @ApiOkResponse({ description: 'Get all breeds' })
   async getAll() {
     return this.breedService.getAll();
   }

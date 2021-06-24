@@ -14,7 +14,7 @@ export class BreedService {
   ) {}
 
   async add(createBreedDto: CreateBreedDto): Promise<BreedDto> {
-    const breedRaw = await this.repo.create(createBreedDto);
+    const breedRaw = this.repo.create(createBreedDto);
 
     return this.repo.save(breedRaw);
   }
@@ -23,7 +23,11 @@ export class BreedService {
     id: number,
     params: FindOneOptions<BreedEntity> = {},
   ): Promise<BreedDto> {
-    return this.repo.findOne(id, params);
+    const breed = await this.repo.findOne(id, params);
+
+    if (!breed) throw new NotFoundException('Breed not found');
+
+    return breed;
   }
 
   async getAll(): Promise<BreedDto[]> {
@@ -32,9 +36,6 @@ export class BreedService {
 
   async update(id: number, updateBreedDto: UpdateBreedDto): Promise<BreedDto> {
     const oldBreed = await this.repo.findOne(id);
-
-    if (!oldBreed) throw new NotFoundException('Breed not found');
-
     const updatedBreed = await this.repo.save(updateBreedDto);
 
     return this.repo.merge(oldBreed, updatedBreed);

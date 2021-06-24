@@ -180,8 +180,6 @@ export class AuthController {
   ) {
     const token = await this.tokenService.get(tokenId);
 
-    if (!token) throw new NotFoundException('Token not found');
-
     if (role !== Role.Admin && token.userId !== id)
       throw new ForbiddenException();
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Connection, Repository } from 'typeorm';
@@ -131,9 +131,13 @@ export class TokenService {
     });
   }
 
-  get(id: number) {
-    return this.tokenRepo.findOne(id, {
+  async get(id: number) {
+    const token = await this.tokenRepo.findOne(id, {
       relations: ['user'],
     });
+
+    if (!token) throw new NotFoundException('Token not found');
+
+    return token;
   }
 }

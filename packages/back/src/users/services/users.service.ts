@@ -7,6 +7,7 @@ import { FindOneOptions, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hash, compare } from 'bcrypt';
 import { promisify } from 'util';
+
 import { Role } from '@hb/types';
 
 import { UserEntity } from '../entities';
@@ -58,17 +59,25 @@ export class UsersService {
     id: number,
     params: FindOneOptions<UserEntity> = {},
   ): Promise<UserDto> {
-    return this.userRepo.findOne(id, params);
+    const user = await this.userRepo.findOne(id, params);
+
+    if (!user) throw new NotFoundException('User not found');
+
+    return user;
   }
 
   async findByLogin(
     login: string,
     params: FindOneOptions<UserEntity> = {},
   ): Promise<UserDto> {
-    return this.userRepo.findOne({
+    const user = await this.userRepo.findOne({
       where: [{ email: login }],
       ...params,
     });
+
+    if (!user) throw new NotFoundException('User not found');
+
+    return user;
   }
 
   async update(

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-import debug from 'debug';
+import debug from '@/services/log';
 
-const log = debug('@hb/front:axios');
-const errLog = debug('@hb/front:axios Error');
+const log = debug('axios');
+const errLog = debug('axios-error');
 
 const isRefreshTokenExpired = (token) => {
   try {

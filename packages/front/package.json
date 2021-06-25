@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
+    "dev": "cross-env DEBUG=@hb/front:* nuxt",
     "start": "nuxt start",
-    "generate": "nuxt generate",
+    "build": "nuxt generate",
+    "build:dev": "cross-env DEBUG=@hb/front:* nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
     "lint": "yarn lint:js && yarn lint:style",
@@ -47,7 +47,9 @@
     "stylelint": "^13.12.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^21.0.0",
+    "ts-loader": "^8.0.18",
     "ts-jest": "^26.5.4",
-    "vue-jest": "^3.0.4"
+    "vue-jest": "^3.0.4",
+    "cross-env": "^7.0.3"
   }
 }

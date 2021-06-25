@@ -81,8 +81,8 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import Logo from '~/components/Logo.vue';
+import VuetifyLogo from '~/components/VuetifyLogo.vue';
 
 export default {
   components: {
@@ -92,8 +92,8 @@ export default {
 
   computed: {
     url() {
-      return process.env.HB_CLIENT_API_URL
+      return process.env.HB_CLIENT_API_URL;
     },
   },
-}
+};
 </script>

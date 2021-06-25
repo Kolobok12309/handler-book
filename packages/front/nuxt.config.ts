@@ -1,7 +1,7 @@
-import colors from 'vuetify/es5/util/colors'
+import colors from 'vuetify/es5/util/colors';
 
-import defaultMeta from './configs/defaultMeta'
-import env from './configs/env'
+import defaultMeta from './configs/defaultMeta';
+import env from './configs/env';
 
 export default {
   env,
@@ -14,7 +14,10 @@ export default {
 
   css: [],
 
-  plugins: [],
+  plugins: [
+    { src: '@/plugins/nuxt-client-init.ts', ssr: false },
+    { src: '@/plugins/axios.ts' },
+  ],
 
   components: false,
 
@@ -52,4 +55,4 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-}
+};

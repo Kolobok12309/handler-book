@@ -108,7 +108,7 @@ export class AuthController {
     const [, accessToken = ''] = bearer.split(' ');
     const refreshId = this.tokenService.extractIdFromToken(accessToken);
 
-    return this.tokenService.revokeRefreshToken(refreshId);
+    await this.tokenService.revokeRefreshToken(refreshId);
   }
 
   @UseGuards(JwtRefreshGuard)

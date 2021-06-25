@@ -13,9 +13,7 @@ import { AppModule } from './app.module';
 
 declare const module: any;
 
-const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || '0.0.0.0';
-const SENTRY_DSN = process.env.SENTRY_DSN;
+const { PORT = 3000, HOST = '0.0.0.0', SENTRY_DSN } = process.env;
 const log = debug('@hb/back:init');
 
 async function bootstrap() {

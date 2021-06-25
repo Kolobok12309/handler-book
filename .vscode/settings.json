@@ -2,7 +2,6 @@
   "conventionalCommits.scopes": [
     "back",
     "front",
-    "interfaces",
     "types"
   ]
 }

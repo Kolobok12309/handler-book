@@ -8,6 +8,8 @@ import {
   Index,
 } from 'typeorm';
 
+import { Token } from '@hb/types';
+
 import { UserEntity } from './user.entity';
 
 @Entity('refresh_token', {
@@ -15,7 +17,7 @@ import { UserEntity } from './user.entity';
     createdAt: 'DESC',
   },
 })
-export class RefreshTokenEntity {
+export class RefreshTokenEntity implements Token {
   @PrimaryGeneratedColumn()
   id: number;
 

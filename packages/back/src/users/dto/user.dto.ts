@@ -1,4 +1,3 @@
-import { Role, User } from '@hb/types';
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
@@ -10,6 +9,8 @@ import {
   MinLength,
   Min,
 } from 'class-validator';
+
+import { Role, User } from '@hb/types';
 
 import { PASS_MIN_LENGTH } from '../user.consts';
 
@@ -42,7 +43,7 @@ export class UserDto implements Partial<User> {
   @ApiProperty({
     description: 'User role',
   })
-  role?: Role = Role.User;
+  role: Role = Role.User;
 
   @IsString()
   @MinLength(PASS_MIN_LENGTH)

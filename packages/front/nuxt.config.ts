@@ -14,7 +14,7 @@ export default {
 
   head: defaultMeta,
 
-  css: [{ src: 'normalize.css' }],
+  css: [{ src: '@fortawesome/fontawesome-free/css/all.css' }],
 
   plugins: [
     { src: '@/plugins/nuxt-client-init.ts', ssr: false },
@@ -42,6 +42,10 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    treeShake: true,
+    defaultAssets: {
+      icons: 'fa',
+    },
     theme: {
       dark: true,
       themes: {

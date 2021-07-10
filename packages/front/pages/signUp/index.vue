@@ -4,7 +4,7 @@
     max-width="340px"
   >
     <VCardTitle>
-      Вход
+      Регистрация
     </VCardTitle>
 
     <VForm @submit.prevent="onSubmit">
@@ -24,6 +24,20 @@
         </VuelidateWrapper>
 
         <VuelidateWrapper
+          :validator="v$.name"
+          #default="{ errorMessages }"
+        >
+          <VTextField
+            v-model="name"
+            label="Имя"
+            :errorMessages="errorMessages"
+            type="text"
+            required
+            placeholder="Иванов Иван"
+          />
+        </VuelidateWrapper>
+
+        <VuelidateWrapper
           :validator="v$.password"
           #default="{ errorMessages }"
         >
@@ -33,7 +47,21 @@
             :errorMessages="errorMessages"
             type="password"
             required
-            placeholder="qwerty"
+            placeholder="********"
+          />
+        </VuelidateWrapper>
+
+        <VuelidateWrapper
+          :validator="v$.confirmPassword"
+          #default="{ errorMessages }"
+        >
+          <VTextField
+            v-model="confirmPassword"
+            label="Повторите пароль"
+            :errorMessages="errorMessages"
+            type="password"
+            required
+            placeholder="********"
           />
         </VuelidateWrapper>
       </VCardText>
@@ -45,15 +73,15 @@
           text
           outlined
         >
-          Войти
+          Зарегистрироваться
         </VBtn>
 
         <VBtn
           color="secondary"
-          to="/signUp"
+          to="/signIn"
           text
         >
-          Регистрация
+          Вход
         </VBtn>
       </VCardActions>
     </VForm>

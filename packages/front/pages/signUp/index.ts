@@ -1,7 +1,14 @@
 import flatry from 'flatry';
 import { mapActions } from 'vuex';
 import { defineComponent } from '@vue/composition-api';
-import { required, minLength, email, helpers } from '@vuelidate/validators';
+import {
+  required,
+  minLength,
+  maxLength,
+  email,
+  sameAs,
+  helpers,
+} from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core';
 
 const PASS_MIN_LENGTH = 8;
@@ -13,13 +20,22 @@ export default defineComponent({
 
   data() {
     return {
+      name: '',
       email: '',
       password: '',
+      confirmPassword: '',
     };
   },
 
   validations() {
     return {
+      name: {
+        required: helpers.withMessage('Обязательное поле', required),
+        minLength: helpers.withMessage(
+          'Максимальная длина 64 символа',
+          maxLength(64),
+        ),
+      },
       email: {
         required: helpers.withMessage('Обязательное поле', required),
         minLength: helpers.withMessage(
@@ -34,12 +50,27 @@ export default defineComponent({
           `Минимальная длина ${PASS_MIN_LENGTH} символов`,
           minLength(PASS_MIN_LENGTH),
         ),
+        sameAs: helpers.withMessage(
+          'Пароли не совпадают',
+          sameAs(this.confirmPassword),
+        ),
+      },
+      confirmPassword: {
+        required: helpers.withMessage('Обязательное поле', required),
+        minLength: helpers.withMessage(
+          `Минимальная длина ${PASS_MIN_LENGTH} символов`,
+          minLength(PASS_MIN_LENGTH),
+        ),
+        sameAs: helpers.withMessage(
+          'Пароли не совпадают',
+          sameAs(this.password),
+        ),
       },
     };
   },
 
   methods: {
-    ...mapActions('user', ['signIn']),
+    ...mapActions('user', ['signUp']),
 
     async onSubmit() {
       const isFormValid = await this.v$.$validate();
@@ -47,12 +78,12 @@ export default defineComponent({
       if (!isFormValid) return;
       this.v$.$reset();
 
-      const { email, password } = this;
+      const { name, email, password } = this;
 
-      const [err, user] = await flatry(this.signIn({ email, password }));
+      const [err, user] = await flatry(this.signUp({ name, email, password }));
 
       if (err) {
-        this.$toast.error('Ошибка авторизации', err.serverError);
+        this.$toast.error(err.serverError, 'Ошибка регистрации');
       } else {
         this.$router.push('/');
       }

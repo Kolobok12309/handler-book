@@ -34,13 +34,13 @@ export default {
 
   async signUp({ commit, dispatch }, body: SignUpDto) {
     const user = await signUp(this.$axios, body);
-    const { accessToken, refreshToken } = await signIn(this.$axios, {
-      email: body.email,
-      password: body.password,
-    });
+    const { accessToken, refreshToken } = await signIn(this.$axios, body);
 
     dispatch('setTokens', { accessToken, refreshToken });
+
     commit('setUser', user);
+
+    return user;
   },
 
   async signIn({ dispatch }, body: SignInDto) {

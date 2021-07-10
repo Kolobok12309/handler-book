@@ -4,7 +4,7 @@ import { defineComponent } from '@vue/composition-api';
 import { required, minLength, email, helpers } from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core';
 
-const PASS_MIN_LENGTH = 10;
+const PASS_MIN_LENGTH = 8;
 
 export default defineComponent({
   setup: () => ({ v$: useVuelidate() }),

@@ -30,10 +30,10 @@ export const getUserTokens = ({ $get }, userId: number) =>
 export const revokeToken = ({ $delete }, tokenId: number) =>
   $delete(`/tokens/${tokenId}`) as Promise<void>;
 
-export const getSelf = ({ $get }) => $get('/user/self') as Promise<UserDto>;
+export const getSelf = ({ $get }) => $get('/users/self') as Promise<UserDto>;
 
 export const getUser = ({ $get }, id) =>
-  $get(`/user/${id}`) as Promise<UserDto>;
+  $get(`/users/${id}`) as Promise<UserDto>;
 
 // export const updateUser = ({ $patch }, id, body) => $patch(`/user/${id}`, body);
 

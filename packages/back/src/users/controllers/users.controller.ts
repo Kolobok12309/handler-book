@@ -39,7 +39,18 @@ export class UsersController {
   //   return this.usersService.findAll();
   // }
 
-  @Get(':id')
+  @Get('self')
+  @Auth([Role.Admin, Role.User])
+  @ApiOkResponse({
+    description: 'Get self user',
+  })
+  getSelf(@User('id') userId: number): Promise<UserDto> {
+    log(`Get self ${userId}`);
+
+    return this.usersService.findById(userId);
+  }
+
+  @Get(':id(\\d+)')
   @Auth([Role.Admin])
   @ApiOkResponse({
     description: 'Get user by id',
@@ -51,17 +62,6 @@ export class UsersController {
     log(`Find user ${id}`);
 
     return this.usersService.findById(id);
-  }
-
-  @Get('self')
-  @Auth([Role.Admin, Role.User])
-  @ApiOkResponse({
-    description: 'Get self user',
-  })
-  getSelf(@User('id') userId: number): Promise<UserDto> {
-    log(`Get self ${userId}`);
-
-    return this.usersService.findById(userId);
   }
 
   // @Patch(':id')

@@ -1,3 +1,5 @@
+import path from 'path';
+
 import colors from 'vuetify/es5/util/colors';
 
 import defaultMeta from './configs/defaultMeta';
@@ -12,11 +14,14 @@ export default {
 
   head: defaultMeta,
 
-  css: [],
+  css: [{ src: 'normalize.css' }],
 
   plugins: [
     { src: '@/plugins/nuxt-client-init.ts', ssr: false },
     { src: '@/plugins/axios.ts' },
+    { src: '@/plugins/composition-api.ts' },
+    { src: '@/plugins/toast.ts' },
+    { src: '@/components/global/index.ts' },
   ],
 
   components: false,
@@ -54,5 +59,21 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extractCss: true,
+    loaders: {
+      stylus: {
+        stylusOptions: {
+          import: ['global'],
+          preferPathResolver: 'webpack',
+          include: [path.resolve(__dirname, 'style')],
+        },
+      },
+      imgUrl: { limit: 1000000 },
+    },
+
+    extends(config) {
+      config.resolve.extensions = ['.vue', '.js', '.json', '.scss', '.styl'];
+    },
+  },
 };

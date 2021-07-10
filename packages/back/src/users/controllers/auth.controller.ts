@@ -51,7 +51,7 @@ export class AuthController {
   @ApiCreatedResponse({
     description: 'User logged in',
   })
-  @ApiUnauthorizedResponse()
+  @ApiForbiddenResponse()
   async signIn(
     @Body() { email, password }: SignInDto,
     @Ip() ip?: string,
@@ -62,7 +62,7 @@ export class AuthController {
       password,
     });
 
-    if (!user) throw new UnauthorizedException('Wrong username or password');
+    if (!user) throw new ForbiddenException('Wrong username or password');
 
     const { id: tokenId } = await this.tokenService.createRefreshToken({
       userId: user.id,

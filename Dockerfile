@@ -10,7 +10,7 @@ COPY package.json yarn.lock ./
 
 COPY packages/back/package.json ./packages/back/
 COPY packages/types/package.json ./packages/types/
-COPY packages/front/package.json ./packages/front
+COPY packages/front/package.json ./packages/front/
 
 RUN yarn install --frozen-lockfile
 
@@ -23,7 +23,7 @@ FROM build as back
 
 WORKDIR /user/src/packages/back
 
-CMD ["yarn", "start"]
+CMD ["yarn", "start:prod"]
 
 
 

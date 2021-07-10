@@ -18,7 +18,7 @@ const isRefreshTokenExpired = (token) => {
   }
 };
 
-export default function ({ $axios, app: { $router }, store }) {
+export default function ({ $axios, redirect, store }) {
   $axios.onRequest((config) => {
     config.progress = false;
     const shortUrl = config.url.replace(config.baseURL, '');
@@ -58,6 +58,8 @@ export default function ({ $axios, app: { $router }, store }) {
       ) {
         store.dispatch('user/setTokens');
         store.commit('user/setUser');
+
+        redirect('/signUp');
       } else {
         try {
           await store.dispatch('user/refreshToken');
@@ -66,10 +68,10 @@ export default function ({ $axios, app: { $router }, store }) {
         } catch (err) {
           store.dispatch('user/setTokens');
           store.commit('user/setUser');
+
+          redirect('/signIn');
         }
       }
-
-      $router.push({ path: '/signUp' });
     }
 
     const info = {

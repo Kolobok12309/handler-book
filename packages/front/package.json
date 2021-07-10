@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env DEBUG=@hb/front:* nuxt",
+    "dev": "cross-env DEBUG=@hb/front:* PORT=80 nuxt",
     "start": "nuxt start",
     "build": "nuxt generate",
     "build:dev": "cross-env DEBUG=@hb/front:* nuxt generate",
@@ -13,13 +13,20 @@
     "test": "jest"
   },
   "dependencies": {
+    "-": "^0.0.1",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@hb/back": "^1.0.0",
     "@nuxtjs/axios": "^5.13.1",
+    "@vue/composition-api": "^1.0.0-rc.13",
+    "@vuelidate/core": "^2.0.0-alpha.21",
+    "@vuelidate/validators": "^2.0.0-alpha.18",
     "core-js": "^3.9.1",
     "dotenv": "^10.0.0",
+    "flatry": "^1.0.12",
+    "normalize.css": "^8.0.1",
     "nuxt": "^2.15.3",
     "vue": "^2.6.14",
+    "vue-toastify": "^1.8.0",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {
@@ -49,6 +56,8 @@
     "stylelint": "^13.12.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^21.0.0",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^4.3.3",
     "ts-jest": "^26.5.4",
     "ts-loader": "^8.0.18",
     "vue-jest": "^3.0.4"

@@ -7,6 +7,10 @@ dist
 .env
 .eslint
 .git
+.github
+.gitignore
+.nuxt
+.yarnrc
 coverage
 docker-compose*
 .prettier
@@ -14,3 +18,4 @@ README
 uploads/tmp
 Procfile
 tsconfig.tsbuildinfo
+yarn-error.log

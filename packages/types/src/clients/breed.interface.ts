@@ -1,4 +1,5 @@
 import { BreedGroup } from './breed-group.interfaces';
+import { SubBreed } from './sub-breed.interface';
 
 export interface Breed {
   id: number;
@@ -7,5 +8,7 @@ export interface Breed {
 
   fci: number;
 
-  group?: BreedGroup
+  group?: BreedGroup;
+
+  subgroups: SubBreed[];
 }

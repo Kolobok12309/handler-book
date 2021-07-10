@@ -1,5 +1,5 @@
-import { OmitType } from '@nestjs/swagger';
+import { PartialType } from '@nestjs/swagger';
 
-import { BreedDto } from './breed.dto';
+import { CreateBreedDto } from './create-breed.dto';
 
-export class UpdateBreedDto extends OmitType(BreedDto, ['id'] as const) {}
+export class UpdateBreedDto extends PartialType(CreateBreedDto) {}

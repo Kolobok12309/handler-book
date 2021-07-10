@@ -6,6 +6,7 @@ import { BreedController, BreedGroupController } from './controllers';
 import {
   BreedEntity,
   BreedGroupEntity,
+  SubBreedEntity,
   DogEntity,
   PersonEntity,
 } from './entities';
@@ -19,6 +20,7 @@ import {
       DogEntity,
       BreedGroupEntity,
       BreedEntity,
+      SubBreedEntity,
     ]),
   ],
 })

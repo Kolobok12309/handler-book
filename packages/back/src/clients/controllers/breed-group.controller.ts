@@ -30,13 +30,13 @@ export class BreedGroupController {
   @Post()
   @ApiBody({ type: CreateBreedGroupDto })
   @ApiNotFoundResponse()
-  async add(@Body() createBreedGroupDto: CreateBreedGroupDto) {
+  add(@Body() createBreedGroupDto: CreateBreedGroupDto) {
     return this.breedGroupService.add(createBreedGroupDto);
   }
 
   @Auth([Role.Admin])
   @Patch(':id')
-  async update(
+  update(
     @Param('id') id: number,
     @Body() updateBreedGroupDto: UpdateBreedGroupDto,
   ) {
@@ -45,13 +45,13 @@ export class BreedGroupController {
 
   @Auth([Role.Admin])
   @Delete(':id')
-  async delete(@Param('id') id: number) {
+  delete(@Param('id') id: number) {
     return this.breedGroupService.del(id);
   }
 
   @Get()
   @ApiOkResponse({ description: 'Get all breed groups' })
-  async getAll() {
+  getAll() {
     return this.breedGroupService.getAll();
   }
 }

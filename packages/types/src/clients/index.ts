@@ -5,3 +5,4 @@ export { Title, titles } from './title.interface';
 export { DogClass } from './dog-class.interface';
 export { BreedGroup } from './breed-group.interfaces';
 export { Breed } from './breed.interface';
+export { SubBreed } from './sub-breed.interface';

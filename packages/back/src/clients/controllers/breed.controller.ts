@@ -30,28 +30,25 @@ export class BreedController {
   @Post()
   @ApiBody({ type: CreateBreedDto })
   @ApiNotFoundResponse()
-  async add(@Body() createBreedDto: CreateBreedDto) {
+  add(@Body() createBreedDto: CreateBreedDto) {
     return this.breedService.add(createBreedDto);
   }
 
   @Auth([Role.Admin])
   @Patch(':id')
-  async update(
-    @Param('id') id: number,
-    @Body() updateBreedDto: UpdateBreedDto,
-  ) {
+  update(@Param('id') id: number, @Body() updateBreedDto: UpdateBreedDto) {
     return this.breedService.update(id, updateBreedDto);
   }
 
   @Auth([Role.Admin])
   @Delete(':id')
-  async delete(@Param('id') id: number) {
+  delete(@Param('id') id: number) {
     return this.breedService.del(id);
   }
 
   @Get()
   @ApiOkResponse({ description: 'Get all breeds' })
-  async getAll() {
+  getAll() {
     return this.breedService.getAll();
   }
 }

@@ -13,10 +13,10 @@ export class BreedService {
     private readonly repo: Repository<BreedEntity>,
   ) {}
 
-  async add(createBreedDto: CreateBreedDto): Promise<BreedDto> {
-    const breedRaw = this.repo.create(createBreedDto);
+  add(createDto: CreateBreedDto): Promise<BreedDto> {
+    const raw = this.repo.create(createDto);
 
-    return this.repo.save(breedRaw);
+    return this.repo.save(raw);
   }
 
   async getById(
@@ -30,15 +30,15 @@ export class BreedService {
     return breed;
   }
 
-  async getAll(): Promise<BreedDto[]> {
+  getAll(): Promise<BreedDto[]> {
     return this.repo.find();
   }
 
-  async update(id: number, updateBreedDto: UpdateBreedDto): Promise<BreedDto> {
-    const oldBreed = await this.repo.findOne(id);
-    const updatedBreed = await this.repo.save(updateBreedDto);
+  async update(id: number, updateDto: UpdateBreedDto): Promise<BreedDto> {
+    const old = await this.repo.findOne(id);
+    const updated = await this.repo.save(updateDto);
 
-    return this.repo.merge(oldBreed, updatedBreed);
+    return this.repo.merge(old, updated);
   }
 
   async del(id: number): Promise<boolean> {

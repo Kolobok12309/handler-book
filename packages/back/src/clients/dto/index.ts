@@ -4,3 +4,6 @@ export { UpdateBreedDto } from './update-breed.dto';
 export { BreedGroupDto } from './breed-group.dto';
 export { CreateBreedGroupDto } from './create-breed-group.dto';
 export { UpdateBreedGroupDto } from './update-breed-group.dto';
+export { SubBreedDto } from './sub-breed.dto';
+export { CreateSubBreedDto } from './create-sub-breed.dto';
+export { UpdateSubBreedDto } from './update-sub-breed.dto';

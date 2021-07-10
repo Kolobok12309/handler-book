@@ -17,10 +17,10 @@ export class BreedGroupService {
     private readonly repo: Repository<BreedGroupEntity>,
   ) {}
 
-  async add(createBreedGroupDto: CreateBreedGroupDto): Promise<BreedGroupDto> {
-    const breedGroupRaw = this.repo.create(createBreedGroupDto);
+  add(createDto: CreateBreedGroupDto): Promise<BreedGroupDto> {
+    const raw = this.repo.create(createDto);
 
-    return this.repo.save(breedGroupRaw);
+    return this.repo.save(raw);
   }
 
   async getById(
@@ -34,18 +34,18 @@ export class BreedGroupService {
     return breedGroup;
   }
 
-  async getAll(): Promise<BreedGroupDto[]> {
+  getAll(): Promise<BreedGroupDto[]> {
     return this.repo.find();
   }
 
   async update(
     id: number,
-    updateBreedGroupDto: UpdateBreedGroupDto,
+    updateDto: UpdateBreedGroupDto,
   ): Promise<BreedGroupDto> {
-    const oldBreed = await this.getById(id);
-    const updatedBreed = await this.repo.save(updateBreedGroupDto);
+    const old = await this.getById(id);
+    const updated = await this.repo.save(updateDto);
 
-    return this.repo.merge(oldBreed, updatedBreed);
+    return this.repo.merge(old, updated);
   }
 
   async del(id: number): Promise<boolean> {

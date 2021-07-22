@@ -7,16 +7,18 @@ import {
   RelationId,
 } from 'typeorm';
 
+import { Breed } from '@hb/types';
+
 import { BreedGroupEntity } from './breed-group.entity';
 import { SubBreedEntity } from './sub-breed.entity';
 
 @Entity('breeds', {
   orderBy: {
-    id: 'DESC',
+    id: 'ASC',
     name: 'ASC',
   },
 })
-export class BreedEntity {
+export class BreedEntity implements Breed {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -39,6 +41,7 @@ export class BreedEntity {
 
   @OneToMany(() => SubBreedEntity, (subBreed) => subBreed.breed, {
     eager: true,
+    cascade: true,
   })
   subgroups: SubBreedEntity[];
 }

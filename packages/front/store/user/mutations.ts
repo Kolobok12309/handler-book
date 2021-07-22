@@ -19,8 +19,23 @@ export default {
     state.refreshToken = refreshToken;
   },
 
-  setUser(state, user: Omit<User, 'password'>) {
-    state.user = user;
+  setUser(
+    state,
+    {
+      id = null,
+      name = null,
+      email = null,
+      role = null,
+      createdAt = null,
+    }: Omit<User, 'password'> = {} as User,
+  ) {
+    state.user = {
+      id,
+      name,
+      email,
+      role,
+      createdAt,
+    };
   },
 
   setRefreshPromise(

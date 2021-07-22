@@ -6,7 +6,7 @@ import { BreedEntity } from './breed.entity';
 
 @Entity('breed-groups', {
   orderBy: {
-    id: 'DESC',
+    id: 'ASC',
     name: 'ASC',
   },
 })

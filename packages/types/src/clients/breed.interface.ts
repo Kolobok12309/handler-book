@@ -10,5 +10,7 @@ export interface Breed {
 
   group?: BreedGroup;
 
+  groupId: number;
+
   subgroups: SubBreed[];
 }

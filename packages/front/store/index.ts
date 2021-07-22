@@ -21,6 +21,9 @@ const root = { root: true };
 
 export const actions = {
   async nuxtClientInit({ dispatch }, context) {
-    await Promise.all([dispatch('user/nuxtClientInit', context, root)]);
+    await Promise.all([
+      dispatch('user/nuxtClientInit', context, root),
+      dispatch('breed/nuxtClientInit', context, root),
+    ]);
   },
 };

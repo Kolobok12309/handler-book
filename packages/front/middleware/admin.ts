@@ -1,4 +1,5 @@
-export default function ({ store, redirect }) {
+export default function ({ store, error }) {
   if (store.getters['user/isAdmin']) return;
-  return redirect('/');
+
+  return error({ statusCode: 404, message: 'Страница не найдена' });
 }

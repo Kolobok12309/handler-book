@@ -10,7 +10,7 @@ import { BreedEntity } from './breed.entity';
 
 @Entity('sub-breeds', {
   orderBy: {
-    id: 'DESC',
+    id: 'ASC',
     name: 'ASC',
   },
 })

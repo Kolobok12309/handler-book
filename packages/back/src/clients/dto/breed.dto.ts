@@ -3,7 +3,10 @@ import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 import { Breed } from '@hb/types';
 
-export class BreedDto implements Partial<Breed> {
+import { SubBreedDto } from './sub-breed.dto';
+import { BreedGroupDto } from './breed-group.dto';
+
+export class BreedDto implements Breed {
   @IsNumber()
   @ApiProperty({
     description: 'Breed id(not fci)',
@@ -25,9 +28,18 @@ export class BreedDto implements Partial<Breed> {
   })
   name: string;
 
+  @ApiProperty({
+    description: 'Breed group',
+    required: false,
+  })
+  group?: BreedGroupDto;
+
   @IsNumber()
   @ApiProperty({
     description: 'Id of breed group',
   })
   groupId: number;
+
+  @ApiProperty()
+  subgroups: SubBreedDto[];
 }

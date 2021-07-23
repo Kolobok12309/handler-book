@@ -1,35 +1,17 @@
 import { mapGetters } from 'vuex';
 
-import SidebarItem from './components/sidebar-item';
-
-import { sidebar } from './config';
+import Sidebar from './components/sidebar';
 
 export default {
   components: {
-    SidebarItem,
+    Sidebar,
   },
 
-  data() {
-    return {
-      items: [
-        {
-          icon: 'fa-apps',
-          title: 'Welcome',
-          to: '/',
-        },
-        {
-          icon: 'fa-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
-        },
-      ],
-      title: 'Handler-book',
-    };
-  },
+  data: () => ({
+    drawer: true,
+  }),
 
   computed: {
     ...mapGetters('user', ['isGuest', 'isAdmin']),
-
-    sidebar: () => sidebar,
   },
 };

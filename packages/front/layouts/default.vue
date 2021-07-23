@@ -1,33 +1,10 @@
 <template>
   <VApp dark>
-    <VNavigationDrawer
-      permanent
-      app
-    >
-      <VListItem>
-        <VListItemContent>
-          <VListItemTitle class="text-h6">
-            Handler-book
-          </VListItemTitle>
-
-          <VListItemSubtitle>
-            Помощник хендлеру
-          </VListItemSubtitle>
-        </VListItemContent>
-      </VListItem>
-
-      <VDivider />
-
-      <VList>
-        <SidebarItem
-          v-for="(item, index) in sidebar"
-          :key="index"
-          :item="item"
-        />
-      </VList>
-    </VNavigationDrawer>
+    <Sidebar v-model="drawer" />
 
     <VAppBar fixed app>
+      <VAppBarNavIcon @click.stop="drawer = !drawer" />
+
       <VSpacer />
 
       <VBtn
@@ -54,9 +31,10 @@
         >
           <VCol
             cols="12"
-            sm="8"
-            md="6"
-            class="py-5"
+            sm="12"
+            md="10"
+            lg="8"
+            class="pa-9"
           >
             <Nuxt />
           </VCol>

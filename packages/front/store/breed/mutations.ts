@@ -26,10 +26,11 @@ export default {
     else breedGroups.push(breedGroup);
   },
 
-  deleteBreedGroup({ breedGroups }, groupId: number) {
-    const index = breedGroups.findIndex(({ id }) => id === groupId);
+  deleteBreedGroup(state, groupId: number) {
+    const index = state.breedGroups.findIndex(({ id }) => id === groupId);
 
-    if (~index) breedGroups.splice(index, 1);
+    if (~index) state.breedGroups.splice(index, 1);
+    state.breeds = state.breeds.filter((breed) => breed.groupId !== groupId);
   },
 
   addBreed({ breeds }, breed: Breed) {

@@ -11,7 +11,21 @@
           justify="center"
         >
           <VCol class="col-auto">
-            <VBtn icon>
+            <VBtn
+              icon
+              :to="`/admin/breed-groups/${item.id}`"
+            >
+              <VIcon small>
+                fa-link
+              </VIcon>
+            </VBtn>
+          </VCol>
+
+          <VCol class="col-auto">
+            <VBtn
+              icon
+              :to="`/admin/breed-groups/${item.id}#edit`"
+            >
               <VIcon small>
                 fa-pencil-alt
               </VIcon>
@@ -19,7 +33,10 @@
           </VCol>
 
           <VCol class="col-auto">
-            <VBtn icon>
+            <VBtn
+              icon
+              @click="onDelete(item)"
+            >
               <VIcon small>
                 fa-trash
               </VIcon>
@@ -35,9 +52,3 @@
   src="./index.ts"
   lang="typescript"
 ></script>
-
-<style
-  src="./index.styl"
-  lang="stylus"
-  scoped
-></style>

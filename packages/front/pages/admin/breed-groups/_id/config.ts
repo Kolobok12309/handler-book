@@ -5,14 +5,14 @@ export const headers = [
     value: 'fci',
   },
   {
-    text: 'Название группы',
+    text: 'Название породы',
     align: 'start',
     value: 'name',
   },
   {
-    text: 'Кол-во пород',
+    text: 'Подразделения пород',
     align: 'center',
-    value: 'breeds.length',
+    value: 'subgroups.length',
   },
   {
     text: 'Действия',

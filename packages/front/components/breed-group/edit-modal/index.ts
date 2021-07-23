@@ -18,7 +18,7 @@ export default {
   },
 
   computed: {
-    compValue: {
+    compOpened: {
       get() {
         return this.opened;
       },
@@ -40,7 +40,7 @@ export default {
     },
 
     onCancel() {
-      this.opened = false;
+      this.compOpened = false;
     },
 
     reset() {

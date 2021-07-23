@@ -43,7 +43,7 @@ export class BreedGroupService {
     updateDto: UpdateBreedGroupDto,
   ): Promise<BreedGroupDto> {
     const old = await this.getById(id);
-    const updated = await this.repo.save(updateDto);
+    const updated = await this.repo.save({ id, ...updateDto });
 
     return this.repo.merge(old, updated);
   }

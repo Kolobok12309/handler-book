@@ -1,6 +1,6 @@
 <template>
   <VDialog
-    v-model="compValue"
+    v-model="compOpened"
     width="400"
   >
     <template #activator="options">

@@ -1,5 +1,6 @@
 import { required, integer, helpers } from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core';
+import pick from 'lodash/pick';
 
 import { defaultForm } from './config';
 
@@ -57,9 +58,11 @@ export default {
 
   methods: {
     reset() {
+      const defaults = defaultForm();
+
       this.form = {
-        ...defaultForm(),
-        ...this.value,
+        ...defaults,
+        ...pick(this.value || {}, Object.keys(defaults)),
       };
     },
 

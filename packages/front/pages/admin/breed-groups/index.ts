@@ -24,15 +24,16 @@ export default {
     breadcrumbs: () => [
       {
         text: 'Главная',
-        href: '/',
+        to: '/',
       },
       {
         text: 'Админ',
-        href: '/admin',
+        exact: true,
+        to: '/admin',
       },
       {
         text: 'Породные группы',
-        href: '/admin/breed-groups',
+        to: '/admin/breed-groups',
         disabled: true,
       },
     ],

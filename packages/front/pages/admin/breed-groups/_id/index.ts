@@ -32,19 +32,21 @@ export default {
       return [
         {
           text: 'Главная',
-          href: '/',
+          to: '/',
         },
         {
           text: 'Админ',
-          href: '/admin',
+          exact: true,
+          to: '/admin',
         },
         {
           text: 'Породные группы',
-          href: '/admin/breed-groups',
+          exact: true,
+          to: '/admin/breed-groups',
         },
         {
           text: `Группа ${fci}`,
-          href: `/admin/breed-groups/${id}`,
+          to: `/admin/breed-groups/${id}`,
           disabled: true,
         },
       ];
@@ -54,9 +56,15 @@ export default {
   watch: {
     '$route.hash': {
       handler(newVal) {
-        if (newVal === '#edit') this.onGroupEdit();
+        if (newVal === '#edit') {
+          this.onGroupEdit();
+        }
       },
       immediate: true,
+    },
+
+    editGroupModalOpened(newVal) {
+      if (!newVal) this.$router.push({ hash: null });
     }
   },
 

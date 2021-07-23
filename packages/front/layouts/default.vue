@@ -48,9 +48,3 @@
   src="./default/index.ts"
   lang="typescript"
 ></script>
-
-<style
-  src="./default/index.styl"
-  lang="stylus"
-  scoped
-></style>

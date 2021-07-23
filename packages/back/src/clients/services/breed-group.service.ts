@@ -29,7 +29,7 @@ export class BreedGroupService {
   ): Promise<BreedGroupDto> {
     const breedGroup = await this.repo.findOne(id, params);
 
-    if (breedGroup) throw new NotFoundException('Breed group not found');
+    if (!breedGroup) throw new NotFoundException('Breed group not found');
 
     return breedGroup;
   }

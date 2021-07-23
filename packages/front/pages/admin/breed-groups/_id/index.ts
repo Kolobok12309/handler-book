@@ -10,10 +10,12 @@ export default {
     return !!store.getters['breed/breedGroupById'][params.id];
   },
 
+  middleware: ['admin'],
+
   components,
 
   data: () => ({
-    isEdit: false,
+    editGroupModalOpened: false,
     pending: false,
   }),
 
@@ -37,7 +39,7 @@ export default {
           href: '/admin',
         },
         {
-          text: 'Группы пород',
+          text: 'Породные группы',
           href: '/admin/breed-groups',
         },
         {
@@ -49,6 +51,15 @@ export default {
     },
   },
 
+  watch: {
+    '$route.hash': {
+      handler(newVal) {
+        if (newVal === '#edit') this.onGroupEdit();
+      },
+      immediate: true,
+    }
+  },
+
   methods: {
     ...mapActions('breed', [
       'updateBreedGroup',
@@ -58,7 +69,23 @@ export default {
       'deleteBreed',
     ]),
 
-    onGroupEdit() {},
+    onGroupEdit() {
+      this.editGroupModalOpened = true;
+    },
+
+    async groupEdit(body) {
+      const { id } = this.breedGroup;
+
+      this.pending = true;
+      const [err] = await flatry(this.updateBreedGroup({ id, ...body }));
+      this.pending = false;
+
+      if (err)
+        return this.$toast.error('Ошибка изменения группы', err.serverError);
+
+      this.editGroupModalOpened = false;
+      this.$toast.success('Группа успешно изменена');
+    },
 
     async onGroupDelete() {
       const { id, name } = this.breedGroup;

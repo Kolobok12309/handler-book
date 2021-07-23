@@ -1,5 +1,16 @@
 <template>
   <VCard>
+    <VCardTitle>
+      Породные группы
+    </VCardTitle>
+
+    <VCardSubtitle>
+      <VBreadcrumbs
+        :items="breadcrumbs"
+        class="px-0"
+      />
+    </VCardSubtitle>
+
     <VDataTable
       :items="breedGroups"
       :headers="headers"
@@ -45,6 +56,22 @@
         </VRow>
       </template>
     </VDataTable>
+
+    <VCardActions>
+      <BreedGroupEditModal
+        :opened.sync="addModalOpened"
+        #default="{ on, attrs }"
+        @submit="onAddBreedGroup"
+      >
+        <VBtn
+          color="primary"
+          v-bind="attrs"
+          v-on="on"
+        >
+          Добавить группу
+        </VBtn>
+      </BreedGroupEditModal>
+    </VCardActions>
   </VCard>
 </template>
 

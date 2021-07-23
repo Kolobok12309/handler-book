@@ -4,22 +4,42 @@ import flatry from 'flatry';
 import { BreedGroup } from '@hb/types';
 
 import { headers } from './config';
+import components from './components';
 
 export default {
   middleware: ['admin'],
 
+  components,
+
   data: () => ({
     pending: false,
+    addModalOpened: false,
   }),
 
   computed: {
     ...mapGetters('breed', ['breedGroups', 'breeds']),
 
     headers: () => headers,
+
+    breadcrumbs: () => [
+      {
+        text: 'Главная',
+        href: '/',
+      },
+      {
+        text: 'Админ',
+        href: '/admin',
+      },
+      {
+        text: 'Породные группы',
+        href: '/admin/breed-groups',
+        disabled: true,
+      },
+    ],
   },
 
   methods: {
-    ...mapActions('breed', ['deleteBreedGroup']),
+    ...mapActions('breed', ['addBreedGroup', 'deleteBreedGroup']),
 
     async onDelete(item: BreedGroup) {
       if (
@@ -37,6 +57,18 @@ export default {
         return this.$toast.error('Ошибка удаления группы', err.serverError);
 
       this.$toast.success(`Группа ${item.name} успешно удалена`);
+    },
+
+    async onAddBreedGroup(body) {
+      this.pending = true;
+      const [err] = await flatry(this.addBreedGroup(body));
+      this.pending = false;
+
+      if (err)
+        return this.$toast.error('Ошибка создания группы', err.serverError);
+
+      this.addModalOpened = false;
+      this.$toast.success('Группа успешно добавлена');
     },
   },
 };

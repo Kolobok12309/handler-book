@@ -8,7 +8,7 @@ export default {
   },
 
   data: () => ({
-    drawer: true,
+    drawer: false,
   }),
 
   computed: {

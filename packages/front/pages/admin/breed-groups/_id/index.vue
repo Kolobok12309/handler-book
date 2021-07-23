@@ -46,6 +46,12 @@
         Удалить группу
       </VBtn>
     </VCardActions>
+
+    <BreedGroupEditModal
+      :opened.sync="editGroupModalOpened"
+      :value="breedGroup"
+      @submit="groupEdit"
+    />
   </VCard>
 </template>
 

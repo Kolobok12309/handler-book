@@ -57,18 +57,6 @@
               Группы пород
             </VListItemContent>
           </VListItem>
-
-          <VListItem
-            to="/admin/breeds"
-            router
-            exact
-          >
-            <VListItemAction />
-
-            <VListItemContent>
-              Породы
-            </VListItemContent>
-          </VListItem>
         </VListGroup>
       </template>
     </VList>

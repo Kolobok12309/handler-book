@@ -10,6 +10,6 @@
     "strict": false,
     "sourceMap": true,
     "inlineSources": true,
-    "preserveSymlinks": true
+    "preserveSymlinks": false
   }
 }

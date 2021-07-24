@@ -11,7 +11,7 @@ export const DbModule = TypeOrmModule.forRootAsync({
     const envSsl = configService.get<string>('DB_SSL');
     const ssl = envSsl && envSsl !== 'false'
       ? {
-        rejectUnauthorized: envSsl !== 'strict',
+        rejectUnauthorized: envSsl === 'strict',
         }
       : false;
 

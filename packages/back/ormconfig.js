@@ -11,7 +11,7 @@ const synchronize = getEnv('DB_SYNC', !isProd);
 const envSsl = getEnv('DB_SSL');
 const ssl = envSsl && envSsl !== 'false'
   ? {
-    rejectUnauthorized: envSsl !== 'strict',
+    rejectUnauthorized: envSsl === 'strict',
   }
   : false;
 

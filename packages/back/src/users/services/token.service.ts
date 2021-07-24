@@ -5,6 +5,7 @@ import { Connection, Repository } from 'typeorm';
 
 import { Role } from '@hb/types';
 
+import { TokenPairDto } from './../dto';
 import { RefreshTokenEntity } from './../entities';
 
 @Injectable()
@@ -44,7 +45,7 @@ export class TokenService {
     tokenId: number;
     email: string;
     role: Role;
-  }) {
+  }): Promise<TokenPairDto> {
     const [refreshToken, accessToken] = await Promise.all([
       this.jwtService.signAsync(
         { id, tokenId, type: 'refresh' },

@@ -3,13 +3,11 @@ import {
   SignUpDto,
   UserDto,
   TokenDto,
+  TokenPairDto,
 } from '@hb/back/src/users/dto';
 
 export const signIn = ({ $post }, body: SignInDto) =>
-  $post('/signIn', body) as Promise<{
-    accessToken: string;
-    refreshToken: string;
-  }>;
+  $post('/signIn', body) as Promise<TokenPairDto>;
 
 export const signUp = ({ $post }, body: SignUpDto) =>
   $post('/signUp', body) as Promise<UserDto>;
@@ -17,10 +15,7 @@ export const signUp = ({ $post }, body: SignUpDto) =>
 export const signOut = ({ $post }) => $post('/signOut') as Promise<void>;
 
 export const refreshToken = ({ $post }, token: string) =>
-  $post('/refresh', { refresh_token: token }, { isRefresh: true }) as Promise<{
-    accessToken: string;
-    refreshToken: string;
-  }>;
+  $post('/refresh', { refresh_token: token }, { isRefresh: true }) as Promise<TokenPairDto>;
 
 export const getTokens = ({ $get }) => $get('/tokens') as Promise<TokenDto[]>;
 

@@ -5,3 +5,4 @@ export { UserDto } from './user.dto';
 export { SignUpDto } from './signUp.dto';
 export { SignInDto } from './signIn.dto';
 export { TokenDto } from './token.dto';
+export { TokenPairDto } from './token-pair.dto';

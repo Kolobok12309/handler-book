@@ -27,12 +27,11 @@ export default function ({ $axios, redirect, store }) {
     else log(`⇢ ${config.method} ${shortUrl}`);
   });
 
-  $axios.onResponse((response) => {
-    const shortUrl = response.config.url.replace(response.config.baseURL, '');
-    const methodAndUrl = `${response.config.method} ${shortUrl.slice(1)}`;
-    delete response.data._debug;
+  $axios.onResponse(({ config, data }) => {
+    const shortUrl = config.url.replace(config.baseURL, '');
+    const methodAndUrl = `${config.method} ${shortUrl.slice(1)}`;
 
-    log(`↞ ${methodAndUrl}`, response.data);
+    log(`↞ ${methodAndUrl}`, data);
   });
 
   $axios.onError(async (err) => {

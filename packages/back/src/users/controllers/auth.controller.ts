@@ -29,7 +29,7 @@ import { ConfigService } from '@nestjs/config';
 import { Role, TokenUser } from '@hb/types';
 
 import { UsersService, AuthService, TokenService } from '../services';
-import { SignInDto, SignUpDto } from '../dto';
+import { SignInDto, SignUpDto, TokenPairDto } from '../dto';
 import { JwtGuard, JwtRefreshGuard } from '../guards';
 import { Auth, User } from '../decorators';
 
@@ -70,17 +70,12 @@ export class AuthController {
       ip,
     });
 
-    const { refreshToken, accessToken } = await this.tokenService.signTokens({
+    return this.tokenService.signTokens({
       id: user.id,
       tokenId,
       email,
       role: user.role,
     });
-
-    return {
-      accessToken,
-      refreshToken,
-    };
   }
 
   @Post('signUp')
@@ -142,17 +137,12 @@ export class AuthController {
 
     if (!refreshTokenEntity) throw new UnauthorizedException();
 
-    const { accessToken, refreshToken } = await this.tokenService.signTokens({
+    return this.tokenService.signTokens({
       id,
       tokenId: refreshTokenEntity.id,
       email: userFromDb.email,
       role: userFromDb.role,
     });
-
-    return {
-      accessToken,
-      refreshToken,
-    };
   }
 
   @Get('/tokens')

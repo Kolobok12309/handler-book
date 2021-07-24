@@ -4,8 +4,9 @@
 name: Deploy CI
 
 on:
-  tags:
-    - v*
+  push:
+    tags:
+      - v*
 
 jobs:
   build:

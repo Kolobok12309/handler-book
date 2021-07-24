@@ -16,6 +16,8 @@ export default {
 
   data: () => ({
     editGroupModalOpened: false,
+    editBreedModalOpened: false,
+    nowBreed: null,
     pending: false,
   }),
 
@@ -27,7 +29,7 @@ export default {
     },
 
     breadcrumbs() {
-      const { id, fci } = this.breedGroup;
+      const { id, fci, name } = this.breedGroup;
 
       return [
         {
@@ -45,7 +47,7 @@ export default {
           to: '/admin/breed-groups',
         },
         {
-          text: `Группа ${fci}`,
+          text: `Группа ${fci || name}`,
           to: `/admin/breed-groups/${id}`,
           disabled: true,
         },
@@ -115,9 +117,45 @@ export default {
       this.$toast.success(`Группа "${name}" успешно удалена`);
     },
 
-    onBreedAdd() {},
+    onBreedAdd() {
+      this.nowBreed = null;
+      this.$nextTick(() => this.editBreedModalOpened = true);
+    },
 
-    onBreedEdit(breed: Breed) {},
+    onBreedEdit(breed: Breed) {
+      this.nowBreed = breed;
+      this.$nextTick(() => this.editBreedModalOpened = true);
+    },
+
+    async breedAdd(body) {
+      const { id: groupId } = this.breedGroup;
+
+      this.pending = true;
+      const [err] = await flatry(this.addBreed({ groupId, ...body }));
+      this.pending = false;
+
+      if (err)
+        return this.$toast.error('Ошибка создания породы', err.serverError);
+
+      this.editBreedModalOpened = false;
+      this.$toast.success(`Порода "${body.name}" успешно создана`);
+    },
+
+    async breedEdit(body) {
+      const { id: groupId } = this.breedGroup;
+      const { id } = this.nowBreed;
+
+      this.pending = true;
+      const [err] = await flatry(this.updateBreed({ id, groupId, ...body }));
+      this.pending = false;
+
+      if (err)
+        return this.$toast.error('Ошибка изменения породы', err.serverError);
+
+      this.editBreedModalOpened = false;
+      this.nowBreed = null;
+      this.$toast.success(`Порода "${body.name}" успешно изменена`);
+    },
 
     async onBreedDelete(breed: Breed) {
       const { id, name } = breed;

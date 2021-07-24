@@ -7,14 +7,13 @@
       <slot v-bind="options" />
     </template>
 
-    <BreedGroupForm
+    <BreedForm
       ref="form"
       :value="value"
       :pending="pending"
       @submit="onSubmit"
       @cancel="onCancel"
     />
-    </VCard>
   </VDialog>
 </template>
 

@@ -14,6 +14,7 @@
     <VDataTable
       :items="breedGroups"
       :headers="headers"
+      :loading="pending"
     >
       <template #item.actions="{ item }">
         <VRow
@@ -60,8 +61,9 @@
     <VCardActions>
       <BreedGroupEditModal
         :opened.sync="addModalOpened"
+        :pending="pending"
         #default="{ on, attrs }"
-        @submit="onAddBreedGroup"
+        @add="onAddBreedGroup"
       >
         <VBtn
           color="primary"

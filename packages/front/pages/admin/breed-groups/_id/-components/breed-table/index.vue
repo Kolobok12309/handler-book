@@ -2,6 +2,7 @@
   <VDataTable
     :items="breeds"
     :headers="headers"
+    :loading="pending"
   >
     <template #item.actions="{ item }">
       <VRow

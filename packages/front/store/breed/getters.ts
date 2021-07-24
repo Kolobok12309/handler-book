@@ -1,11 +1,11 @@
 import { GetterTree } from 'vuex';
 
-import { Breed, BreedGroup } from '@hb/types';
+import { Breed, SubBreed, BreedGroup } from '@hb/types';
 
 import { BreedState } from './state';
 
 export default {
-  linkedBreedAndGroups({ breedGroups, breeds }) {
+  linkedItems({ breedGroups, breeds }) {
     const linkedGroups: BreedGroup[] = breedGroups.map((group) => ({
       breeds: [],
       ...group,
@@ -27,12 +27,18 @@ export default {
     };
   },
 
-  breedGroups(_, { linkedBreedAndGroups }): BreedGroup[] {
-    return linkedBreedAndGroups.linkedGroups;
+  breedGroups(_, { linkedItems }): BreedGroup[] {
+    return linkedItems.linkedGroups;
   },
 
-  breeds(_, { linkedBreedAndGroups }): Breed[] {
-    return linkedBreedAndGroups.linkedBreeds;
+  breeds(_, { linkedItems }): Breed[] {
+    return linkedItems.linkedBreeds;
+  },
+
+  subBreeds(_, { breeds }): SubBreed[] {
+    return breeds.reduce((acc, breed) =>
+      acc.concat(breed.subgroups.map((subGroups) => ({ ...subGroups, breed })))
+    , []);
   },
 
   breedGroupById(_, { breedGroups }): { [key: number]: BreedGroup } {

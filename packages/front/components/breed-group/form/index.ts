@@ -12,6 +12,11 @@ export default {
       type: Object,
       default: null,
     },
+
+    pending: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({

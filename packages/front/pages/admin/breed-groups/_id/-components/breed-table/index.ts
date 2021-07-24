@@ -8,6 +8,11 @@ export default {
       type: Array as () => Breed[],
       default: () => [],
     },
+
+    pending: {
+      type: Boolean,
+      defaul: false,
+    },
   },
 
   computed: {

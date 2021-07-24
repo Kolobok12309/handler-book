@@ -19,6 +19,7 @@
 
     <BreedTable
       :breeds="breedGroup.breeds"
+      :pending="pending"
       @edit="onBreedEdit"
       @delete="onBreedDelete"
     />
@@ -50,7 +51,16 @@
     <BreedGroupEditModal
       :opened.sync="editGroupModalOpened"
       :value="breedGroup"
-      @submit="groupEdit"
+      :pending="pending"
+      @edit="groupEdit"
+    />
+
+    <BreedEditModal
+      :opened.sync="editBreedModalOpened"
+      :value="nowBreed"
+      :pending="pending"
+      @add="breedAdd"
+      @edit="breedEdit"
     />
   </VCard>
 </template>

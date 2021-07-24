@@ -1,8 +1,8 @@
-import BreedGroupForm from '../form';
+import BreedForm from '../form';
 
 export default {
   components: {
-    BreedGroupForm,
+    BreedForm,
   },
 
   props: {

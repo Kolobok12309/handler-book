@@ -7,3 +7,4 @@ export { UpdateBreedGroupDto } from './update-breed-group.dto';
 export { SubBreedDto } from './sub-breed.dto';
 export { CreateSubBreedDto } from './create-sub-breed.dto';
 export { UpdateSubBreedDto } from './update-sub-breed.dto';
+export { CascadeSubBreedDto } from './cascade-sub-breed.dto';

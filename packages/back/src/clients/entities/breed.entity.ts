@@ -1,10 +1,10 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
-  RelationId,
 } from 'typeorm';
 
 import { Breed } from '@hb/types';
@@ -34,9 +34,10 @@ export class BreedEntity implements Breed {
   @ManyToOne(() => BreedGroupEntity, (group) => group.breeds, {
     onDelete: 'CASCADE',
   })
+  @JoinColumn({ name: 'groupId' })
   group?: BreedGroupEntity;
 
-  @RelationId((breed: BreedEntity) => breed.group)
+  @Column()
   groupId: number;
 
   @OneToMany(() => SubBreedEntity, (subBreed) => subBreed.breed, {

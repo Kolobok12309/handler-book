@@ -35,7 +35,7 @@ export class SubBreedService {
   }
 
   async update(id: number, updateDto: UpdateSubBreedDto): Promise<SubBreedDto> {
-    const old = await this.repo.findOne(id);
+    const old = await this.getById(id);
     const updated = await this.repo.save({ id, ...updateDto });
 
     return this.repo.merge(old, updated);

@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer';
 
 import { Breed } from '@hb/types';
 
@@ -32,6 +33,7 @@ export class BreedDto implements Breed {
     description: 'Breed group',
     required: false,
   })
+  @Type(() => BreedGroupDto)
   group?: BreedGroupDto;
 
   @IsNumber()
@@ -40,6 +42,10 @@ export class BreedDto implements Breed {
   })
   groupId: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'List of subgroups',
+  })
+  @ValidateNested({ each: true })
+  @Type(() => SubBreedDto)
   subgroups: SubBreedDto[];
 }

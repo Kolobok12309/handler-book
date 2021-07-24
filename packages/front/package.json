@@ -12,6 +12,10 @@
     "lint": "yarn lint:js && yarn lint:style",
     "test": "jest"
   },
+  "engines": {
+    "node": "14.x",
+    "yarn": "1.x"
+  },
   "dependencies": {
     "-": "^0.0.1",
     "@fortawesome/fontawesome-free": "^5.15.3",

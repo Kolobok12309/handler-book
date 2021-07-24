@@ -15,6 +15,10 @@
   "workspaces": [
     "packages/*"
   ],
+  "engines": {
+    "node": "14.x",
+    "yarn": "1.x"
+  },
   "devDependencies": {
     "jest": "^27.0.4",
     "lerna": "^4.0.0"

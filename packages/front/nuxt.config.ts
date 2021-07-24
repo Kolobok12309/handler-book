@@ -32,6 +32,11 @@ export default {
     '@nuxtjs/vuetify',
   ],
 
+  router: {
+    base: process.env.HB_BASE_URL,
+    mode: process.env.HB_HISTORY_MODE,
+  },
+
   modules: ['@nuxtjs/axios'],
 
   axios: {
@@ -64,6 +69,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    publicPath: process.env.HB_PUBLIC_PATH,
+
     extractCss: true,
     loaders: {
       stylus: {

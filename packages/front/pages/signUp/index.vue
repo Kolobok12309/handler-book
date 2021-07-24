@@ -10,13 +10,15 @@
     <VForm @submit.prevent="onSubmit">
       <VCardText>
         <VuelidateWrapper
-          :validator="v$.email"
+          :validator="v$.form.email"
           #default="{ errorMessages }"
         >
           <VTextField
-            v-model="email"
+            v-model="form.email"
             label="Email"
             :errorMessages="errorMessages"
+            :loading="pending"
+            :disabled="pending"
             type="text"
             required
             placeholder="name@example.com"
@@ -24,13 +26,15 @@
         </VuelidateWrapper>
 
         <VuelidateWrapper
-          :validator="v$.name"
+          :validator="v$.form.name"
           #default="{ errorMessages }"
         >
           <VTextField
-            v-model="name"
+            v-model="form.name"
             label="Имя"
             :errorMessages="errorMessages"
+            :loading="pending"
+            :disabled="pending"
             type="text"
             required
             placeholder="Иванов Иван"
@@ -38,13 +42,15 @@
         </VuelidateWrapper>
 
         <VuelidateWrapper
-          :validator="v$.password"
+          :validator="v$.form.password"
           #default="{ errorMessages }"
         >
           <VTextField
-            v-model="password"
+            v-model="form.password"
             label="Пароль"
             :errorMessages="errorMessages"
+            :loading="pending"
+            :disabled="pending"
             type="password"
             required
             placeholder="********"
@@ -52,13 +58,15 @@
         </VuelidateWrapper>
 
         <VuelidateWrapper
-          :validator="v$.confirmPassword"
+          :validator="v$.form.confirmPassword"
           #default="{ errorMessages }"
         >
           <VTextField
-            v-model="confirmPassword"
+            v-model="form.confirmPassword"
             label="Повторите пароль"
             :errorMessages="errorMessages"
+            :loading="pending"
+            :disabled="pending"
             type="password"
             required
             placeholder="********"
@@ -70,6 +78,7 @@
         <VBtn
           color="primary"
           type="submit"
+          :loading="pending"
           text
           outlined
         >
@@ -79,6 +88,7 @@
         <VBtn
           color="secondary"
           to="/signIn"
+          :loading="pending"
           text
         >
           Вход

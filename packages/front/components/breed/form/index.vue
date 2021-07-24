@@ -15,6 +15,7 @@
             label="Название породы"
             :errorMessages="errorMessages"
             :loading="pending"
+            :disabled="pending"
             type="text"
             required
             placeholder="Название"
@@ -30,6 +31,7 @@
             label="FCI"
             :errorMessages="errorMessages"
             :loading="pending"
+            :disabled="pending"
             type="number"
             placeholder="#"
           />
@@ -39,6 +41,7 @@
           v-model="form.subgroups"
           :items="subBreedNames"
           :loading="pending"
+          :disabled="pending"
           label="Подгруппы"
           multiple
           chips

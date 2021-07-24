@@ -17,11 +17,11 @@ export default {
   css: [{ src: '@fortawesome/fontawesome-free/css/all.css' }],
 
   plugins: [
-    { src: '@/plugins/nuxt-client-init.ts', ssr: false },
+    { src: '@/plugins/toast.ts' },
     { src: '@/plugins/axios.ts' },
     { src: '@/plugins/composition-api.ts' },
-    { src: '@/plugins/toast.ts' },
     { src: '@/components/global/index.ts' },
+    { src: '@/plugins/nuxt-client-init.ts', ssr: false },
   ],
 
   components: false,

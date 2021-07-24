@@ -10,13 +10,15 @@
     <VForm @submit.prevent="onSubmit">
       <VCardText>
         <VuelidateWrapper
-          :validator="v$.email"
+          :validator="v$.form.email"
           #default="{ errorMessages }"
         >
           <VTextField
-            v-model="email"
+            v-model="form.email"
             label="Email"
             :errorMessages="errorMessages"
+            :loading="pending"
+            :disabled="pending"
             type="text"
             required
             placeholder="name@example.com"
@@ -24,13 +26,15 @@
         </VuelidateWrapper>
 
         <VuelidateWrapper
-          :validator="v$.password"
+          :validator="v$.form.password"
           #default="{ errorMessages }"
         >
           <VTextField
-            v-model="password"
+            v-model="form.password"
             label="Пароль"
             :errorMessages="errorMessages"
+            :loading="pending"
+            :disabled="pending"
             type="password"
             required
             placeholder="qwerty"
@@ -42,6 +46,7 @@
         <VBtn
           color="primary"
           type="submit"
+          :loading="pending"
           text
           outlined
         >
@@ -51,6 +56,7 @@
         <VBtn
           color="secondary"
           to="/signUp"
+          :loading="pending"
           text
         >
           Регистрация

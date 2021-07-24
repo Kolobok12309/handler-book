@@ -15,6 +15,7 @@
             label="Название группы"
             :errorMessages="errorMessages"
             :loading="pending"
+            :disabled="pending"
             type="text"
             required
             placeholder="Название"
@@ -30,6 +31,7 @@
             label="FCI"
             :errorMessages="errorMessages"
             :loading="pending"
+            :disabled="pending"
             type="number"
             placeholder="#"
           />

@@ -8,11 +8,17 @@ const isProd = getEnv('NODE_ENV') === 'production';
 
 // eslint-disable-next-line no-nested-ternary
 const synchronize = getEnv('DB_SYNC', !isProd);
+const envSsl = getEnv('DB_SSL');
+const ssl = envSsl && envSsl !== 'false'
+  ? {
+    rejectUnauthorized: envSsl !== 'strict',
+  }
+  : false;
 
 const connectionOptions = {
   type: 'postgres',
   synchronize,
-  ssl: getEnv('DB_SSL', false) === 'true',
+  ssl,
   dropSchema: false,
   logging: true,
   entities: [isProd ? 'dist/src/**/*.entity.js' : 'src/**/*.entity.ts'],

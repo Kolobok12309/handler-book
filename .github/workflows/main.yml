@@ -4,10 +4,8 @@
 name: Deploy CI
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  tags:
+    - v*
 
 jobs:
   build:
@@ -23,10 +21,10 @@ jobs:
         node-version: 14.x
 
     - name: Install dependencies
-      run: yarn workspace @hb/front install --frozen-lockfile
+      run: yarn install --frozen-lockfile
 
     - name: Build package
-      run: yarn workspace @hb/front build
+      run: yarn build
       env:
         HB_CLIENT_API_URL: https://handler-book.herokuapp.com/
         HB_SERVER_API_URL: https://handler-book.herokuapp.com/

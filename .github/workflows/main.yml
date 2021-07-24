@@ -16,14 +16,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+
     - name: Install node
       uses: actions/setup-node@master
-      
-    - name: Install yarn
-      run: apk add yarn
+      with:
+        node-version: 14.x
 
     - name: Install dependencies
       run: yarn workspace @hb/front install --frozen-lockfile
+
     - name: Build package
       run: yarn workspace @hb/front build
       env:

@@ -1,0 +1,57 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Deploy CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build project
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Install node
+      uses: actions/setup-node@master
+      
+    - name: Install yarn
+      run: apk add yarn
+
+    - name: Install dependencies
+      run: yarn workspace @hb/front install --frozen-lockfile
+    - name: Build package
+      run: yarn workspace @hb/front build
+      env:
+        HB_CLIENT_API_URL: https://handler-book.herokuapp.com/
+        HB_SERVER_API_URL: https://handler-book.herokuapp.com/
+        HB_BASE_URL: /handler-book/
+        HB_HISTORY_MODE: hash
+        HB_PUBLIC_PATH: https://kolobok12309.github.io/handler-book/
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: dist
+        path: packages/front/dist
+
+  deploy:
+    name: Deploy to Github pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download artifact build
+      uses: actions/download-artifact@v1
+      with:
+        name: dist
+
+    - name: Deploy to Github Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist

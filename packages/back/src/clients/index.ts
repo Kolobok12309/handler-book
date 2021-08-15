@@ -1,2 +1,2 @@
-export * from './dto';
+export * from './cruds';
 export { ClientsModule } from './clients.module';

@@ -8,9 +8,9 @@ import { Role } from '@hb/types';
 
 import { RolesGuard, JwtGuard } from '../guards';
 
-export const Auth = (roles: Role[]) =>
+export const Auth = (roles: Role | Role[]) =>
   applyDecorators(
-    SetMetadata('roles', roles),
+    SetMetadata('roles', [].concat(roles)),
     UseGuards(JwtGuard, RolesGuard),
     ApiBearerAuth(),
     ApiForbiddenResponse({ description: 'Not enough rights' }),

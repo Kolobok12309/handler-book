@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 import { BreedGroup } from '@hb/types';
 
-import { BreedEntity } from './breed.entity';
+import { BreedEntity } from '../breed';
 
 @Entity('breed-groups', {
   orderBy: {

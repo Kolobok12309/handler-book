@@ -9,7 +9,8 @@ import {
 
 import { Breed } from '@hb/types';
 
-import { BreedGroupEntity } from './breed-group.entity';
+import { BreedGroupEntity } from '../../breed-group';
+
 import { SubBreedEntity } from './sub-breed.entity';
 
 @Entity('breeds', {

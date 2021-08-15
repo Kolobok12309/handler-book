@@ -9,6 +9,7 @@ import { version } from '~/package.json';
 
 import { DuplicationTypeormExceptionsFilter } from './db';
 import { ErrorInterceptor } from './error.interceptor';
+import './crud.config';
 import { AppModule } from './app.module';
 
 declare const module: any;

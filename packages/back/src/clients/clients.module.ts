@@ -1,27 +1,15 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { BreedService, BreedGroupService } from './services';
-import { BreedController, BreedGroupController } from './controllers';
-import {
-  BreedEntity,
-  BreedGroupEntity,
-  SubBreedEntity,
-  DogEntity,
-  PersonEntity,
-} from './entities';
+import { PersonEntity } from './entities';
+import { BreedModule, BreedGroupModule, DogModule } from './cruds';
 
 @Module({
-  controllers: [BreedController, BreedGroupController],
-  providers: [BreedService, BreedGroupService],
   imports: [
-    TypeOrmModule.forFeature([
-      PersonEntity,
-      DogEntity,
-      BreedGroupEntity,
-      BreedEntity,
-      SubBreedEntity,
-    ]),
+    BreedModule,
+    BreedGroupModule,
+    DogModule,
+    TypeOrmModule.forFeature([PersonEntity]),
   ],
 })
 export class ClientsModule {}

@@ -1,11 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import {
+  IsNumber,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 import { Breed } from '@hb/types';
 
+import { BreedGroupDto } from '../../breed-group';
+
 import { SubBreedDto } from './sub-breed.dto';
-import { BreedGroupDto } from './breed-group.dto';
 
 export class BreedDto implements Breed {
   @IsNumber()

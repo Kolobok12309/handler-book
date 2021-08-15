@@ -13,8 +13,8 @@ import { Dog, Sex } from '@hb/types';
 import { UserEntity } from '@/users';
 import { FileEntity } from '@/storage';
 
-import { PersonEntity } from './person.entity';
-import { BreedEntity } from './breed.entity';
+import { PersonEntity } from '../../entities';
+import { BreedEntity } from '../breed';
 
 @Entity('dogs', {
   orderBy: {

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{657:function(e,t,n){"use strict";n.r(t),n.d(t,"headers",(function(){return r}));var r=[{text:"FCI",align:"center",value:"fci"},{text:"Название породы",align:"start",value:"name"},{text:"Подразделения пород",align:"center",value:"subgroups.length"},{text:"Действия",align:"center",value:"actions",sortable:!1}]}}]);

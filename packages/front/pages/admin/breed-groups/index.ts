@@ -71,5 +71,13 @@ export default {
       this.addModalOpened = false;
       this.$toast.success('Группа успешно добавлена');
     },
+
+    itemClass() {
+      return 'breed-group__row';
+    },
+
+    onBreedGroupClick({ id }) {
+      this.$router.push(`/admin/breed-groups/${id}`);
+    },
   },
 };

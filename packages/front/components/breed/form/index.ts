@@ -33,18 +33,17 @@ export default {
         fci: {
           integer: helpers.withMessage('Только цифры', integer),
         },
-      }
-    }
+      },
+    };
   },
 
   computed: {
     ...mapGetters('breed', ['subBreeds']),
 
     subBreedNames() {
-      const names = this.subBreeds
-        .map(({ name }) => name);
+      const names = this.subBreeds.map(({ name }) => name);
 
-      return new Set(names);
+      return [...new Set(names)];
     },
 
     isEdit() {
@@ -52,15 +51,11 @@ export default {
     },
 
     title() {
-      return this.isEdit
-        ? 'Изменение породы'
-        : 'Создание породы';
+      return this.isEdit ? 'Изменение породы' : 'Создание породы';
     },
 
     submitBtnText() {
-      return this.isEdit
-        ? 'Изменить'
-        : 'Создать';
+      return this.isEdit ? 'Изменить' : 'Создать';
     },
   },
 
@@ -79,16 +74,14 @@ export default {
       this.form = {
         ...defaults,
         ...picked,
-        subgroups: (picked.subgroups || [])
-          .map(({ name }) => name),
+        subgroups: (picked.subgroups || []).map(({ name }) => name),
       };
     },
 
     formatForm(form) {
       const res = { ...form };
 
-      res.subgroups = form.subgroups
-        .map((name) => ({ name }));
+      res.subgroups = form.subgroups.map((name) => ({ name }));
 
       return res;
     },
@@ -106,6 +99,5 @@ export default {
       this.reset();
       this.$emit('cancel');
     },
-  }
+  },
 };
-

@@ -15,6 +15,8 @@
       :items="breedGroups"
       :headers="headers"
       :loading="pending"
+      :item-class="itemClass"
+      @click:row="onBreedGroupClick"
     >
       <template #item.actions="{ item }">
         <VRow
@@ -22,17 +24,6 @@
           no-gutters
           justify="center"
         >
-          <VCol class="col-auto">
-            <VBtn
-              icon
-              :to="`/admin/breed-groups/${item.id}`"
-            >
-              <VIcon small>
-                fa-link
-              </VIcon>
-            </VBtn>
-          </VCol>
-
           <VCol class="col-auto">
             <VBtn
               icon
@@ -47,7 +38,7 @@
           <VCol class="col-auto">
             <VBtn
               icon
-              @click="onDelete(item)"
+              @click.stop="onDelete(item)"
             >
               <VIcon small>
                 fa-trash
@@ -81,3 +72,8 @@
   src="./index.ts"
   lang="typescript"
 ></script>
+
+<style
+  src="./index.sass"
+  lang="sass"
+></style>

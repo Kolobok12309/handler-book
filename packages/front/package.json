@@ -1,6 +1,6 @@
 {
   "name": "@hb/front",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "dev": "cross-env DEBUG=@hb/front:* PORT=80 nuxt",
@@ -19,7 +19,7 @@
   "dependencies": {
     "-": "^0.0.1",
     "@fortawesome/fontawesome-free": "^5.15.3",
-    "@hb/back": "^1.0.0",
+    "@hb/back": "^1.0.1",
     "@nuxtjs/axios": "^5.13.1",
     "@vue/composition-api": "^1.0.0-rc.13",
     "@vuelidate/core": "^2.0.0-alpha.21",

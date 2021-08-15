@@ -5,12 +5,11 @@ import { Sex } from './sex.interface';
 import { Person } from './person.interface';
 import { Title } from './title.interface';
 import { DogClass } from './dog-class.interface';
-import { Breed } from './breed.interface';
 
 export interface Dog {
   id: number;
 
-  breed: Breed;
+  breedId: number;
 
   fullname: string;
 
@@ -24,9 +23,9 @@ export interface Dog {
 
   color: string;
 
-  owner: Person | string;
+  owner: Person;
 
-  breeder: Person | string;
+  breeder: Person;
 
   titles: Title[];
 

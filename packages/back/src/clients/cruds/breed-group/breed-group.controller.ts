@@ -6,20 +6,20 @@ import { Role } from '@hb/types';
 
 import { Auth } from '@/users';
 
-import { CreateBreedGroupDto, UpdateBreedGroupDto } from './dto';
+import { BreedGroupDto, CreateBreedGroupDto, UpdateBreedGroupDto } from './dto';
 import { BreedGroupService } from './breed-group.service';
-import { BreedGroupEntity } from './breed-group.entity';
 
 @Crud({
   model: {
-    type: BreedGroupEntity,
+    type: BreedGroupDto,
   },
   dto: {
     create: CreateBreedGroupDto,
     update: UpdateBreedGroupDto,
   },
   routes: {
-    only: ['getManyBase', 'createOneBase', 'updateOneBase', 'deleteOneBase'],
+    // TODO Remove 'getOneBase' after developers fix
+    only: ['getOneBase', 'getManyBase', 'createOneBase', 'updateOneBase', 'deleteOneBase'],
     createOneBase: {
       decorators: [Auth(Role.Admin)],
     },
@@ -33,6 +33,6 @@ import { BreedGroupEntity } from './breed-group.entity';
 })
 @ApiTags('Breed group')
 @Controller('breed-group')
-export class BreedGroupController implements CrudController<BreedGroupEntity> {
+export class BreedGroupController implements CrudController<BreedGroupDto> {
   constructor(public service: BreedGroupService) {}
 }

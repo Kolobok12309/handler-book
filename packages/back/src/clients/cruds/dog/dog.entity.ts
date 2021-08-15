@@ -41,6 +41,8 @@ export class DogEntity implements Omit<Dog, 'titles' | 'class' | 'shows'> {
   })
   breed: BreedEntity;
 
+  breedId: number;
+
   @OneToOne(() => FileEntity, {
     onDelete: 'SET NULL',
     nullable: true,
@@ -59,6 +61,9 @@ export class DogEntity implements Omit<Dog, 'titles' | 'class' | 'shows'> {
   @Column({ default: '' })
   description: string;
 
+  // TODO Mb replace it to OneToMany and update FileEntity
+  // Not OneToMany, because typeorm not support
+  // id's array in entity
   @ManyToMany(() => FileEntity)
   @JoinTable()
   files: FileEntity[];

@@ -9,8 +9,6 @@ import { Type } from 'class-transformer';
 
 import { Breed } from '@hb/types';
 
-import { BreedGroupDto } from '../../breed-group';
-
 import { SubBreedDto } from './sub-breed.dto';
 
 export class BreedDto implements Breed {
@@ -34,13 +32,6 @@ export class BreedDto implements Breed {
     description: 'Breed name',
   })
   name: string;
-
-  @ApiProperty({
-    description: 'Breed group',
-    required: false,
-  })
-  @Type(() => BreedGroupDto)
-  group?: BreedGroupDto;
 
   @IsNumber()
   @ApiProperty({

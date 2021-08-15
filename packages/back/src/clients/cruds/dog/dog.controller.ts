@@ -6,12 +6,25 @@ import { TokenUser, Role } from '@hb/types';
 
 import { Auth } from '@/users';
 
-import { DogEntity } from './dog.entity';
+import { DogDto, CreateDogDto, UpdateDogDto } from './dto';
 import { DogService } from './dog.service';
 
 @Crud({
   model: {
-    type: DogEntity,
+    type: DogDto,
+  },
+  dto: {
+    create: CreateDogDto,
+    update: UpdateDogDto,
+  },
+  routes: {
+    only: [
+      'getOneBase',
+      'getManyBase',
+      'createOneBase',
+      'updateOneBase',
+      'deleteOneBase',
+    ],
   },
 })
 @CrudAuth({
@@ -26,6 +39,6 @@ import { DogService } from './dog.service';
 @ApiTags('Dogs')
 @Controller('dogs')
 @Auth([Role.User, Role.Admin])
-export class DogController implements CrudController<DogEntity> {
+export class DogController implements CrudController<DogDto> {
   constructor(public service: DogService) {}
 }

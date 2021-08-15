@@ -3,7 +3,7 @@ import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 import { BreedGroup } from '@hb/types';
 
-export class BreedGroupDto implements Partial<BreedGroup> {
+export class BreedGroupDto implements BreedGroup {
   @IsNumber()
   @ApiProperty({
     description: 'Breed id(not fci)',

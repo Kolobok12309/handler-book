@@ -1,25 +1,25 @@
 import { Controller } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, PartialType } from '@nestjs/swagger';
 
 import { Role } from '@hb/types';
 
 import { Auth } from '@/users';
 
-import { CreateBreedDto, UpdateBreedDto } from './dto';
+import { BreedDto, CreateBreedDto, UpdateBreedDto } from './dto';
 import { BreedService } from './breed.service';
-import { BreedEntity } from './entities';
 
 @Crud({
   model: {
-    type: BreedEntity,
+    type: BreedDto,
   },
   dto: {
     create: CreateBreedDto,
     update: UpdateBreedDto,
   },
   routes: {
-    only: ['getManyBase', 'createOneBase', 'updateOneBase', 'deleteOneBase'],
+    // TODO Remove 'getOneBase' after developers fix
+    only: ['getOneBase', 'getManyBase', 'createOneBase', 'updateOneBase', 'deleteOneBase'],
     createOneBase: {
       decorators: [Auth(Role.Admin)],
     },
@@ -40,6 +40,6 @@ import { BreedEntity } from './entities';
 })
 @ApiTags('Breed')
 @Controller('breed')
-export class BreedController implements CrudController<BreedEntity> {
+export class BreedController implements CrudController<BreedDto> {
   constructor(public service: BreedService) {}
 }

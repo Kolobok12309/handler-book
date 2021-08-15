@@ -1,6 +1,6 @@
 {
   "name": "hb",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Monorepo for handler-book site",
   "main": "packages/back/src/main.ts",
   "author": "Kolobok12309 <sova123409@gmail.com>",
@@ -10,7 +10,11 @@
     "clean": "lerna run clean",
     "build": "lerna run build --stream",
     "start": "lerna run start --stream",
-    "dev": "lerna run dev --stream"
+    "dev": "lerna run dev --stream",
+    "release": "standard-version",
+    "release:patch": "yarn run release -- --release-as patch",
+    "release:minor": "yarn run release -- --release-as minor",
+    "release:major": "yarn run release -- --release-as major"
   },
   "workspaces": [
     "packages/*"

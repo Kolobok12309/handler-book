@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
-import { ApiTags, PartialType } from '@nestjs/swagger';
+import { ApiTags, ApiExtraModels } from '@nestjs/swagger';
 
 import { Role } from '@hb/types';
 
@@ -18,8 +18,7 @@ import { BreedService } from './breed.service';
     update: UpdateBreedDto,
   },
   routes: {
-    // TODO Remove 'getOneBase' after developers fix
-    only: ['getOneBase', 'getManyBase', 'createOneBase', 'updateOneBase', 'deleteOneBase'],
+    only: ['getManyBase', 'createOneBase', 'updateOneBase', 'deleteOneBase'],
     createOneBase: {
       decorators: [Auth(Role.Admin)],
     },
@@ -38,6 +37,8 @@ import { BreedService } from './breed.service';
     },
   },
 })
+// TODO Remove it after crud decorator fix `getOneBase` bug
+@ApiExtraModels(BreedDto)
 @ApiTags('Breed')
 @Controller('breed')
 export class BreedController implements CrudController<BreedDto> {

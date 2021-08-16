@@ -1,6 +1,16 @@
-import { ApiProperty,  } from '@nestjs/swagger';
-import { IsNumber, IsOptional, IsString, IsDateString, Min, Max } from 'class-validator';
-import { Type } from 'class-transformer';
+import { ApiProperty, ApiHideProperty } from '@nestjs/swagger';
+import { CrudValidationGroups } from '@nestjsx/crud';
+import {
+  IsDateString,
+  IsEmpty,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  MaxLength,
+  Min,
+  Max,
+} from 'class-validator';
 
 import { Dog, Sex } from '@hb/types';
 
@@ -8,66 +18,110 @@ import { FileDto } from '@/storage';
 
 import { PersonDto } from '../../person';
 
+const { CREATE, UPDATE } = CrudValidationGroups;
+
 export class DogDto implements Omit<Dog, 'titles' | 'class' | 'shows'> {
+  @IsEmpty({ groups: [CREATE, UPDATE] })
   @ApiProperty({ description: 'Id of dog' })
   id: number;
 
-  @IsNumber()
-  @ApiProperty({
-    description: 'Breed id',
-  })
-  breedId: number;
-
-  @IsString()
   @IsOptional()
+  @IsString()
   @ApiProperty()
   fullname: string;
 
-  @IsString()
-  @ApiProperty()
+  @IsOptional({ groups: [UPDATE] })
+  @IsNotEmpty({ groups: [CREATE] })
+  @IsString({ always: true })
+  @MaxLength(200, { always: true })
+  @ApiProperty({ maxLength: 200 })
   name: string;
 
+  @IsOptional()
   @IsDateString()
-  @IsOptional()
   @ApiProperty()
-  birthday: Date;
+  birthday?: Date;
 
-  @IsNumber()
   @IsOptional()
-  @Min(Sex.Male)
-  @Max(Sex.Female)
-  @ApiProperty({ enum: Sex })
+  @IsString()
+  @ApiProperty({ default: '' })
+  color: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({ default: '' })
+  description: string;
+
+  @IsOptional({ groups: [UPDATE] })
+  @IsNotEmpty({ groups: [CREATE] })
+  @IsNumber({}, { always: true })
+  @Min(Sex.Male, { always: true })
+  @Max(Sex.Female, { always: true })
+  @ApiProperty({
+    enum: [Sex.Male, Sex.Female],
+    minimum: Sex.Male,
+    maximum: Sex.Female,
+  })
   sex: Sex;
 
+  @IsOptional()
   @IsNumber()
   @Min(0)
   @Max(200)
-  @IsOptional()
   @ApiProperty({
-    description: 'Dog weight in kg\'s',
+    description: "Dog weight in kg's",
   })
   weight: number;
 
-  @IsString()
+  @IsOptional({ groups: [UPDATE] })
+  @IsNotEmpty({ groups: [CREATE] })
+  @IsNumber({}, { always: true })
+  @Min(0, { always: true })
   @ApiProperty()
-  color: string;
+  breedId: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  @ApiProperty()
+  avatarId?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  @ApiProperty()
+  breederId?: number;
+
+  @IsOptional()
+  @IsNumber({}, { each: true })
+  @Min(0, { each: true })
+  @ApiProperty()
+  filesIds?: number[];
+
+  @IsOptional({ groups: [UPDATE] })
+  @IsNotEmpty({ groups: [CREATE] })
+  @IsNumber({}, { always: true })
+  @Min(0, { always: true })
+  @ApiProperty()
+  ownerId?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  @ApiProperty()
+  handlerId?: number;
+
+  // Relations
 
   @ApiProperty()
-  @Type(() => PersonDto)
-  owner: PersonDto;
+  avatar?: FileDto;
 
   @ApiProperty()
-  breeder: PersonDto;
+  breeder?: PersonDto;
 
-  @IsString()
   @ApiProperty()
-  description: string;
+  files?: FileDto[];
 
-  @Type(() => FileDto)
   @ApiProperty()
-  avatar: FileDto;
-
-  @Type(() => FileDto)
-  @ApiProperty()
-  files: FileDto[];
+  owner?: PersonDto;
 }

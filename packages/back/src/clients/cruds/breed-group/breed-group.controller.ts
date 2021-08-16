@@ -29,6 +29,9 @@ import { BreedGroupService } from './breed-group.service';
       decorators: [Auth(Role.Admin)],
     },
   },
+  query: {
+    alwaysPaginate: false,
+  },
 })
 // TODO Remove it after crud decorator fix `getOneBase` bug
 @ApiExtraModels(BreedGroupDto)

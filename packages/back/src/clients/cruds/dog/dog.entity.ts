@@ -6,6 +6,8 @@ import {
   ManyToMany,
   JoinTable,
   Entity,
+  JoinColumn,
+  AfterLoad,
 } from 'typeorm';
 
 import { Dog, Sex } from '@hb/types';
@@ -13,7 +15,7 @@ import { Dog, Sex } from '@hb/types';
 import { UserEntity } from '@/users';
 import { FileEntity } from '@/storage';
 
-import { PersonEntity } from '../../entities';
+import { PersonEntity } from '../person';
 import { BreedEntity } from '../breed';
 
 @Entity('dogs', {
@@ -29,31 +31,11 @@ export class DogEntity implements Omit<Dog, 'titles' | 'class' | 'shows'> {
   @Column({ default: '' })
   fullname: string;
 
-  @Column()
+  @Column({ length: 200, nullable: false })
   name: string;
 
   @Column()
   birthday: Date;
-
-  @ManyToOne(() => BreedEntity, {
-    onDelete: 'SET NULL',
-    nullable: true,
-  })
-  breed: BreedEntity;
-
-  breedId: number;
-
-  @OneToOne(() => FileEntity, {
-    onDelete: 'SET NULL',
-    nullable: true,
-  })
-  avatar: FileEntity;
-
-  @ManyToOne(() => PersonEntity, {
-    onDelete: 'SET NULL',
-    nullable: true,
-  })
-  breeder: PersonEntity;
 
   @Column({ default: '' })
   color: string;
@@ -61,15 +43,69 @@ export class DogEntity implements Omit<Dog, 'titles' | 'class' | 'shows'> {
   @Column({ default: '' })
   description: string;
 
+  @Column({ type: 'int2' })
+  sex: Sex;
+
+  @Column({ type: 'float', nullable: true })
+  weight: number;
+
+  @Column()
+  breedId: number;
+
+  @Column({ nullable: true })
+  avatarId?: number;
+
+  @Column({ nullable: true })
+  breederId?: number;
+
+  @AfterLoad()
+  setFileIds() {
+    this.filesIds = this.files
+      .map(({ id }) => id);
+  }
+  filesIds?: number[];
+
+  @Column({ nullable: true })
+  ownerId?: number;
+
+  @Column({ nullable: true })
+  handlerId?: number;
+
+  // Relations
+
+  @ManyToOne(() => BreedEntity, {
+    onDelete: 'SET NULL',
+    nullable: true,
+  })
+  breed: BreedEntity;
+
+  @OneToOne(() => FileEntity, {
+    onDelete: 'SET NULL',
+    nullable: true,
+    eager: true,
+  })
+  @JoinColumn()
+  avatar: FileEntity;
+
+  @ManyToOne(() => PersonEntity, {
+    onDelete: 'SET NULL',
+    nullable: true,
+    eager: true,
+  })
+  breeder: PersonEntity;
+
   // TODO Mb replace it to OneToMany and update FileEntity
   // Not OneToMany, because typeorm not support
   // id's array in entity
-  @ManyToMany(() => FileEntity)
+  @ManyToMany(() => FileEntity, {
+    eager: true,
+  })
   @JoinTable()
   files: FileEntity[];
 
   @ManyToOne(() => PersonEntity, {
     onDelete: 'CASCADE',
+    eager: true,
   })
   owner: PersonEntity;
 
@@ -77,10 +113,4 @@ export class DogEntity implements Omit<Dog, 'titles' | 'class' | 'shows'> {
     onDelete: 'CASCADE',
   })
   handler: UserEntity;
-
-  @Column({ type: 'int2' })
-  sex: Sex;
-
-  @Column({ type: 'float', nullable: true })
-  weight: number;
 }

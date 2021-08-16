@@ -5,12 +5,17 @@ import {
   JoinColumn,
   OneToOne,
   Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
 } from 'typeorm';
 
 import { Person } from '@hb/types';
 
 import { FileEntity } from '@/storage';
 import { UserEntity } from '@/users';
+
+import { DogEntity } from '../dog/dog.entity';
 
 @Entity('persons', {
   orderBy: {
@@ -22,21 +27,14 @@ export class PersonEntity implements Person {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: false })
-  isClient: boolean;
-
-  @Column({ default: false })
-  isJudge: boolean;
-
-  @Column({ default: false })
-  isBreeder: boolean;
-
   @Column()
   fullname: string;
 
   @OneToOne(() => FileEntity, {
     onDelete: 'SET NULL',
+    eager: true,
   })
+  @JoinColumn()
   avatar: FileEntity;
 
   @Column({ default: '' })
@@ -48,8 +46,19 @@ export class PersonEntity implements Person {
   @Column({ default: '' })
   phone: string;
 
+  @ManyToMany(() => FileEntity)
+  @JoinTable()
+  files: FileEntity[];
+
+  @OneToMany(() => DogEntity, (dog) => dog.owner)
+  ownedDogs: DogEntity[];
+
+  @OneToMany(() => DogEntity, (dog) => dog.breeder)
+  breededDogs: DogEntity[];
+
   @ManyToOne(() => UserEntity, {
     onDelete: 'CASCADE',
+    nullable: false,
   })
   @JoinColumn({ name: 'handlerId' })
   handler: UserEntity;

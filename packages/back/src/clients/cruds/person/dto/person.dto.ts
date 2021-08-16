@@ -5,12 +5,6 @@ import { FileDto } from '@/storage';
 export class PersonDto implements Person {
   id: number;
 
-  isClient: boolean;
-
-  isJudge: boolean;
-
-  isBreeder: boolean;
-
   fullname: string;
 
   email: string;

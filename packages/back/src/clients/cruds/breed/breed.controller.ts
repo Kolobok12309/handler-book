@@ -35,6 +35,7 @@ import { BreedService } from './breed.service';
         eager: true,
       },
     },
+    alwaysPaginate: false,
   },
 })
 // TODO Remove it after crud decorator fix `getOneBase` bug

@@ -9,7 +9,7 @@ import {
 
 import { Breed } from '@hb/types';
 
-import { BreedGroupEntity } from '../../breed-group';
+import { BreedGroupEntity } from '../../breed-group/breed-group.entity';
 
 import { SubBreedEntity } from './sub-breed.entity';
 

@@ -1,15 +1,13 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { PersonEntity } from './entities';
-import { BreedModule, BreedGroupModule, DogModule } from './cruds';
+import {
+  BreedModule,
+  BreedGroupModule,
+  DogModule,
+  PersonModule,
+} from './cruds';
 
 @Module({
-  imports: [
-    BreedModule,
-    BreedGroupModule,
-    DogModule,
-    TypeOrmModule.forFeature([PersonEntity]),
-  ],
+  imports: [BreedModule, BreedGroupModule, DogModule, PersonModule],
 })
 export class ClientsModule {}

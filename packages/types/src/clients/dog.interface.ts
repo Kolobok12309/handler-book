@@ -11,31 +11,31 @@ export interface Dog {
 
   breedId: number;
 
-  fullname: string;
+  fullname?: string;
 
   name: string;
 
-  birthday: Date;
+  birthday?: Date;
 
   sex: Sex;
 
-  weight: number;
+  weight?: number;
 
   color: string;
 
-  owner: Person;
+  owner?: Person;
 
-  breeder: Person;
+  breeder?: Person;
 
   titles: Title[];
 
   description: string;
 
-  avatar: File;
+  avatar?: File;
 
   class: DogClass;
 
   shows: Show[];
 
-  files: File[]
+  files?: File[]
 }

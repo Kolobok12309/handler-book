@@ -1,12 +1,20 @@
 import { Controller } from '@nestjs/common';
-import { Crud, CrudController, CrudAuth } from '@nestjsx/crud';
+import {
+  Crud,
+  CrudController,
+  CrudAuth,
+  Override,
+  CrudRequest,
+  ParsedBody,
+  ParsedRequest,
+} from '@nestjsx/crud';
 import { ApiTags } from '@nestjs/swagger';
 
 import { TokenUser, Role } from '@hb/types';
 
-import { Auth } from '@/users';
+import { Auth, User } from '@/users';
 
-import { DogDto, CreateDogDto, UpdateDogDto } from './dto';
+import { DogDto, EditDogDto } from './dto';
 import { DogService } from './dog.service';
 
 @Crud({
@@ -14,8 +22,8 @@ import { DogService } from './dog.service';
     type: DogDto,
   },
   dto: {
-    create: CreateDogDto,
-    update: UpdateDogDto,
+    create: EditDogDto,
+    update: EditDogDto,
   },
   routes: {
     only: [
@@ -25,6 +33,28 @@ import { DogService } from './dog.service';
       'updateOneBase',
       'deleteOneBase',
     ],
+    createOneBase: {
+      returnShallow: true,
+    },
+    updateOneBase: {
+      returnShallow: true,
+    },
+  },
+  query: {
+    join: {
+      avatar: {
+        eager: true,
+      },
+      breeder: {
+        eager: true,
+      },
+      files: {
+        eager: true,
+      },
+      owner: {
+        eager: true,
+      },
+    },
   },
 })
 @CrudAuth({
@@ -41,4 +71,20 @@ import { DogService } from './dog.service';
 @Auth([Role.User, Role.Admin])
 export class DogController implements CrudController<DogDto> {
   constructor(public service: DogService) {}
+
+  get base(): CrudController<DogDto> {
+    return this;
+  }
+
+  @Override()
+  createOne(
+    @ParsedRequest() req: CrudRequest,
+    @ParsedBody() dto: EditDogDto,
+    @User('id') id: number,
+  ) {
+    return this.base.createOneBase(req, {
+      ...dto,
+      handlerId: id,
+    });
+  }
 }

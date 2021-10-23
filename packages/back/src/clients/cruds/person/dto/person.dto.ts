@@ -1,10 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { CrudValidationGroups } from '@nestjsx/crud';
+import {
+  IsEmpty,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsNumber,
+  Min,
+} from 'class-validator';
 
-import { Person } from '@hb/types';
+import type { Person } from '@hb/types';
 
-import { FileDto } from '@/storage';
-import { IsEmpty, IsNotEmpty, IsOptional, IsString, IsNumber, Min } from 'class-validator';
+import type { FileDto } from '@/storage/dto';
 
 const { CREATE, UPDATE } = CrudValidationGroups;
 

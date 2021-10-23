@@ -14,9 +14,9 @@ import {
 
 import { Dog, Sex } from '@hb/types';
 
-import { FileDto } from '@/storage';
+import type { FileDto } from '@/storage/dto';
 
-import { PersonDto } from '../../person';
+import type { PersonDto } from '../../person/dto';
 
 const { CREATE, UPDATE } = CrudValidationGroups;
 

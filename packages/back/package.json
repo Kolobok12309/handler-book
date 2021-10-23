@@ -38,7 +38,7 @@
   },
   "engines": {
     "node": "14.x",
-    "yarn": "1.x"
+    "yarn": "1.19.x"
   },
   "dependencies": {
     "@hb/types": "^1.0.0",

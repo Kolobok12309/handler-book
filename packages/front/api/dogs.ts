@@ -1,4 +1,7 @@
-import type { DogDto, EditDogDto } from '@hb/back/src/clients/cruds/dog/dto';
+import type {
+  DogDto,
+  EditDogDto,
+} from '@hb/back/dist/src/clients/cruds/dog/dto';
 
 export const getDogs = ({ $get }, params = {}) =>
   $get('/dogs', { params }) as Promise<DogDto[]>;

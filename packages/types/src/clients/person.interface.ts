@@ -11,5 +11,5 @@ export interface Person {
 
   description: string;
 
-  avatar: File;
+  avatar?: File;
 }

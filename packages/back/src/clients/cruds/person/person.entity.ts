@@ -30,13 +30,6 @@ export class PersonEntity implements Person {
   @Column()
   fullname: string;
 
-  @OneToOne(() => FileEntity, {
-    onDelete: 'SET NULL',
-    eager: true,
-  })
-  @JoinColumn()
-  avatar: FileEntity;
-
   @Column({ default: '' })
   description: string;
 
@@ -45,6 +38,21 @@ export class PersonEntity implements Person {
 
   @Column({ default: '' })
   phone: string;
+
+  @Column({ nullable: true })
+  avatarId?: number;
+
+  @Column({ nullable: true })
+  handlerId?: number;
+
+  // Relations
+
+  @OneToOne(() => FileEntity, {
+    onDelete: 'SET NULL',
+    eager: true,
+  })
+  @JoinColumn()
+  avatar: FileEntity;
 
   @ManyToMany(() => FileEntity)
   @JoinTable()

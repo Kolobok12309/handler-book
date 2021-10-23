@@ -31,6 +31,18 @@
         </VListItemContent>
       </VListItem>
 
+      <VListItem
+        to="/dogs"
+        router
+        exact
+      >
+        <VListItemAction />
+
+        <VListItemContent>
+          Собаки
+        </VListItemContent>
+      </VListItem>
+
       <template v-if="isAdmin">
         <VSubheader>
           Админ

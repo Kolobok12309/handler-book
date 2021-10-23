@@ -60,9 +60,9 @@ export class DogEntity implements Omit<Dog, 'titles' | 'class' | 'shows'> {
 
   @AfterLoad()
   setFileIds() {
-    this.filesIds = this.files
-      .map(({ id }) => id);
+    this.filesIds = (this.files || []).map(({ id }) => id);
   }
+
   filesIds?: number[];
 
   @Column({ nullable: true })

@@ -14,16 +14,16 @@ import { TokenUser, Role } from '@hb/types';
 
 import { Auth, User } from '@/users';
 
-import { DogDto, EditDogDto } from './dto';
-import { DogService } from './dog.service';
+import { PersonDto, EditPersonDto } from './dto';
+import { PersonService } from './person.service';
 
 @Crud({
   model: {
-    type: DogDto,
+    type: PersonDto,
   },
   dto: {
-    create: EditDogDto,
-    update: EditDogDto,
+    create: EditPersonDto,
+    update: EditPersonDto,
   },
   routes: {
     only: [
@@ -39,15 +39,6 @@ import { DogService } from './dog.service';
       avatar: {
         eager: true,
       },
-      breeder: {
-        eager: true,
-      },
-      files: {
-        eager: true,
-      },
-      owner: {
-        eager: true,
-      },
     },
   },
 })
@@ -56,24 +47,24 @@ import { DogService } from './dog.service';
     if (role === Role.Admin) return {};
 
     return {
-      'DogEntity.handlerId': id,
+      'PersonEntity.handlerId': id,
     };
   },
 })
-@ApiTags('Dogs')
-@Controller('dogs')
+@ApiTags('Persons')
+@Controller('persons')
 @Auth([Role.User, Role.Admin])
-export class DogController implements CrudController<DogDto> {
-  constructor(public service: DogService) {}
+export class PersonController implements CrudController<PersonDto> {
+  constructor(public service: PersonService) {}
 
-  get base(): CrudController<DogDto> {
+  get base(): CrudController<PersonDto> {
     return this;
   }
 
   @Override()
   createOne(
     @ParsedRequest() req: CrudRequest,
-    @ParsedBody() dto: EditDogDto,
+    @ParsedBody() dto: EditPersonDto,
     @User('id') id: number,
   ) {
     return this.base.createOneBase(req, {

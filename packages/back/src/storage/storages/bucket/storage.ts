@@ -1,5 +1,6 @@
-import { S3 } from 'aws-sdk';
 import { createReadStream } from 'fs';
+
+import { S3 } from 'aws-sdk';
 import debug from 'debug';
 
 import { Storage, UploadFile } from '../../interfaces';
@@ -28,16 +29,19 @@ export class BucketStorage implements Storage {
     log('Init S3');
 
     this.s3 = getS3({
-      accessKey: accessKey,
-      secretAccessKey: secretAccessKey,
+      accessKey,
+      secretAccessKey,
       url,
     });
     this.bucket = bucket;
   }
 
   async init() {
-    const bucketParams = {
+    const bucketParams: S3.CreateBucketRequest = {
       Bucket: this.bucket,
+      // TODO Create second bucket with private rights
+      // Check rights on real s3
+      ACL: 'public-read',
     };
 
     log('Check is bucket exist');

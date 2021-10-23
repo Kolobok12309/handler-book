@@ -1,14 +1,14 @@
-import {
-  BreedGroupDto,
-  CreateBreedGroupDto,
-  UpdateBreedGroupDto,
+import type {
   BreedDto,
   CreateBreedDto,
   UpdateBreedDto,
-  SubBreedDto,
-  CreateSubBreedDto,
-  UpdateSubBreedDto,
-} from '@hb/back/src/clients/dto';
+} from '@hb/back/src/clients/cruds/breed/dto';
+
+import type {
+  BreedGroupDto,
+  CreateBreedGroupDto,
+  UpdateBreedGroupDto,
+} from '@hb/back/src/clients/cruds/breed-group/dto';
 
 // Dog BreedGroups
 export const getBreedGroups = ({ $get }) =>
@@ -37,16 +37,3 @@ export const updateBreed = ({ $patch }, id: number, body: UpdateBreedDto) =>
 
 export const deleteBreed = ({ $delete }, id: number) =>
   $delete(`/breed/${id}`) as Promise<boolean>;
-
-// Dob subBreeds
-export const addSubBreed = ({ $post }, body: CreateSubBreedDto) =>
-  $post('/sub-breed', body) as Promise<SubBreedDto>;
-
-export const updateSubBreed = (
-  { $patch },
-  id: number,
-  body: UpdateSubBreedDto,
-) => $patch(`/sub-breed/${id}`, body) as Promise<SubBreedDto>;
-
-export const deleteSubBreed = ({ $delete }, id: number) =>
-  $delete(`/sub-breed/${id}`) as Promise<boolean>;

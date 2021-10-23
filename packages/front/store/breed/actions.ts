@@ -1,11 +1,10 @@
 import { ActionTree } from 'vuex';
 
+import { BreedDto, CreateBreedDto } from '@hb/back/src/clients/cruds/breed/dto';
 import {
   BreedGroupDto,
   CreateBreedGroupDto,
-  BreedDto,
-  CreateBreedDto,
-} from '@hb/back/src/clients/dto';
+} from '@hb/back/src/clients/cruds/breed-group/dto';
 
 import {
   getBreedGroups,

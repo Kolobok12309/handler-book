@@ -1,14 +1,11 @@
 import { ApiHideProperty, OmitType } from '@nestjs/swagger';
 
-import { DogDto } from './dog.dto';
+import { PersonDto } from './person.dto';
 
-export class EditDogDto extends OmitType(DogDto, [
+export class EditPersonDto extends OmitType(PersonDto, [
   'id',
-  'owner',
-  'breeder',
   'avatar',
-  'files',
-  'handlerId'
+  'handlerId',
 ] as const) {
   @ApiHideProperty()
   id: number;

@@ -74,6 +74,6 @@
 ></script>
 
 <style
-  src="./index.sass"
-  lang="sass"
+  src="./index.styl"
+  lang="stylus"
 ></style>

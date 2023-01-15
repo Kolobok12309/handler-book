@@ -1,7 +1,0 @@
-[defaults]
-project=handler-book-back
-org=kolobok
-url=https://sentry.io
-
-[auth]
-token=2c4aee16ed9e4d66b44fac46367e41c1a8d04fff12ed40ae8bc48b8ba7aea968

@@ -1,2 +1,2 @@
-release: yarn workspace @hb/back migrations:prod
-web: yarn workspace @hb/back start:prod
+release: pnpm --filter ""@hb/back" migrations:prod
+web: pnpm --filter ""@hb/back" start:prod

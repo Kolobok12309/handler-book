@@ -19,7 +19,7 @@ const isProd = process.env.NODE_ENV === 'production';
 export class ErrorInterceptor implements NestInterceptor {
   isSentryEnabled = false;
 
-  constructor(dsn) {
+  constructor(dsn: string) {
     log('Init ErrorInterceptor');
 
     if (isProd && dsn) {

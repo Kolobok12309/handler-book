@@ -4,7 +4,6 @@
     "outDir": "dist",
     "rootDir": ".",
     "baseUrl": ".",
-    "composite": true,
     "paths": {
       "@/*": [
         "./src/*"
@@ -16,12 +15,12 @@
   },
   "include": [
     "src/**/*",
+    "test/**/*",
     "migrations/*",
+    "seeds/*",
     "package.json"
   ],
-  "references": [
-    {
-      "path": "../types"
-    }
+  "exclude": [
+    "dist/**/*"
   ]
 }

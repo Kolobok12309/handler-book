@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class TokenPairDto {
   @ApiProperty({
-    description: 'Access token'
+    description: 'Access token',
   })
   accessToken: string;
 

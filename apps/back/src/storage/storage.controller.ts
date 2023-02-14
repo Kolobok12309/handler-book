@@ -31,7 +31,7 @@ export class StorageController {
     @User('id') userId: number,
   ) {
     const uploaded = await this.storageService.add(file, {
-      userId: userId,
+      userId,
       category: FileCategory.images,
     });
 

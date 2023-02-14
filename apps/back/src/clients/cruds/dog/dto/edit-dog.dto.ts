@@ -8,7 +8,7 @@ export class EditDogDto extends OmitType(DogDto, [
   'breeder',
   'avatar',
   'files',
-  'handlerId'
+  'handlerId',
 ] as const) {
   @ApiHideProperty()
   id: number;

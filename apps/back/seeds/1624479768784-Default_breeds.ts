@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-import { BreedGroupEntity } from '@/clients/entities';
+import { BreedGroupEntity } from '@/clients/cruds';
 
 const groups = [
   {

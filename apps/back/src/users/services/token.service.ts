@@ -118,7 +118,9 @@ export class TokenService {
   }
 
   async isRefreshTokenRevoked(id: number): Promise<boolean> {
-    const foundToken = await this.tokenRepo.findOne(id);
+    const foundToken = await this.tokenRepo.findOne({
+      where: { id },
+    });
 
     return !foundToken;
   }
@@ -133,7 +135,8 @@ export class TokenService {
   }
 
   async get(id: number) {
-    const token = await this.tokenRepo.findOne(id, {
+    const token = await this.tokenRepo.findOne({
+      where: { id },
       relations: ['user'],
     });
 

@@ -10,7 +10,7 @@ import {
   Min,
 } from 'class-validator';
 
-import { Role, User } from '@hb/types';
+import { Role, type User } from '@hb/types';
 
 import { PASS_MIN_LENGTH } from '../user.consts';
 

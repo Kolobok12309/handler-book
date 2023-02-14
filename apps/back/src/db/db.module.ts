@@ -9,11 +9,12 @@ export const DbModule = TypeOrmModule.forRootAsync({
       configService.get<string>('NODE_ENV', 'development') === 'production';
 
     const envSsl = configService.get<string>('DB_SSL');
-    const ssl = envSsl && envSsl !== 'false'
-      ? {
-        rejectUnauthorized: envSsl === 'strict',
-        }
-      : false;
+    const ssl =
+      envSsl && envSsl !== 'false'
+        ? {
+            rejectUnauthorized: envSsl === 'strict',
+          }
+        : false;
 
     const connectionOptions = {
       type: 'postgres',

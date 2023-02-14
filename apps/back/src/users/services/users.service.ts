@@ -1,3 +1,5 @@
+import { promisify } from 'util';
+
 import {
   Injectable,
   NotFoundException,
@@ -6,7 +8,6 @@ import {
 import { FindOneOptions, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hash, compare } from 'bcrypt';
-import { promisify } from 'util';
 
 import { Role } from '@hb/types';
 
@@ -59,7 +60,13 @@ export class UsersService {
     id: number,
     params: FindOneOptions<UserEntity> = {},
   ): Promise<UserDto> {
-    const user = await this.userRepo.findOne(id, params);
+    const user = await this.userRepo.findOne({
+      where: {
+        id,
+        ...params.where,
+      },
+      ...params,
+    });
 
     if (!user) throw new NotFoundException('User not found');
 
@@ -84,7 +91,7 @@ export class UsersService {
     id: number,
     { email, name, role = Role.User }: UpdateUserDto,
   ): Promise<UserDto> {
-    const oldUser = await this.userRepo.findOne(id);
+    const oldUser = await this.userRepo.findOne({ where: { id } });
 
     if (!oldUser) throw new NotFoundException('User not found');
 
@@ -106,7 +113,8 @@ export class UsersService {
     needConfirmPasswords = true,
     { password, oldPassword = '' }: UpdatePasswordDto,
   ) {
-    const user = await this.userRepo.findOne(id, {
+    const user = await this.userRepo.findOne({
+      where: { id },
       select: ['password'],
     });
 

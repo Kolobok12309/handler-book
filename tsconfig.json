@@ -4,12 +4,17 @@
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "target": "es2017",
-    "moduleResolution": "node",
-    "strict": false,
     "sourceMap": true,
-    "inlineSources": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "moduleResolution": "node",
     "preserveSymlinks": true
   }
 }

@@ -1,27 +1,35 @@
 {
   "name": "@hb/types",
   "version": "1.0.0",
-  "description": "",
+  "description": "Types for handler-book applications",
   "author": "Kolobok12309 <sova123409@gmail.com>",
   "private": true,
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
+  "module": "./dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "type": "module",
+  ".": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.cjs"
+  },
   "scripts": {
-    "build": "tsc -b",
-    "prepare": "yarn run build",
-    "prebuild": "yarn run clean",
-    "clean": "tsc -b --clean"
+    "build": "unbuild",
+    "prepare": "pnpm build",
+    "prebuild": "pnpm clean",
+    "clean": "rimraf dist"
   },
   "engines": {
-    "node": "14.x",
-    "yarn": "1.19.x"
+    "node": "18.x",
+    "pnpm": "8.9.x"
   },
+  "packageManager": "pnpm",
   "devDependencies": {
-    "typescript": "^4.2.3",
-    "rimraf": "^3.0.2"
+    "rimraf": "^5.0.5",
+    "unbuild": "^2.0.0"
   }
 }

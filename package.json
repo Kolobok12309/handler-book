@@ -1,32 +1,26 @@
 {
-  "name": "hb",
-  "version": "0.0.2",
+  "name": "@hb/monorepo",
+  "version": "0.1.2",
   "description": "Monorepo for handler-book site",
-  "main": "packages/back/src/main.ts",
   "author": "Kolobok12309 <sova123409@gmail.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "clean": "lerna run clean",
-    "build": "lerna run build --stream",
-    "start": "lerna run start --stream",
-    "dev": "lerna run dev --stream",
+    "clean": "turbo run clean",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "dev": "turbo run dev",
     "release": "standard-version",
     "release:patch": "yarn run release -- --release-as patch",
     "release:minor": "yarn run release -- --release-as minor",
     "release:major": "yarn run release -- --release-as major"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "engines": {
-    "node": "14.x",
-    "yarn": "1.19.x"
+    "node": "18.x",
+    "pnpm": "8.9.x"
   },
+  "packageManager": "pnpm",
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "jest": "^27.0.4",
-    "lerna": "^4.0.0"
-  },
-  "dependencies": {}
+    "cross-env": "^7.0.3"
+  }
 }

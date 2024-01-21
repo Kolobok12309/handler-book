@@ -1,0 +1,24 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "env": ["HOST", "PORT", "DATABASE_URL", "DB_*", "SENTRY_DSN", "JWT_SECRET", "S3", "S3_*"],
+      "inputs": [
+        "src/**",
+        "!src/**/*.spec.ts",
+        "!src/**/*.test.ts",
+        "tsconfig.json",
+        "tsconfig.build.json"
+      ],
+      "outputs": ["dist/**"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "inputs": [
+        "test/**"
+      ]
+    }
+  }
+}

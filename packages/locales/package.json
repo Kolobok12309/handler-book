@@ -1,0 +1,31 @@
+{
+  "name": "@hb/locales",
+  "version": "1.0.0",
+  "description": "Locales for handler-book applications",
+  "author": "Kolobok12309 <sova123409@gmail.com>",
+  "private": true,
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    "./en": "./dist/en",
+    "./ru": "./dist/ru"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "prepare": "pnpm build",
+    "prebuild": "pnpm clean",
+    "clean": "rimraf dist"
+  },
+  "engines": {
+    "node": "18.x",
+    "pnpm": "8.9.2"
+  },
+  "packageManager": "pnpm@8.9.2",
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "unbuild": "^2.0.0"
+  }
+}

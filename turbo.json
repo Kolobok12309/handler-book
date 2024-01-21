@@ -5,22 +5,8 @@
       "cache": false,
       "persistent": true
     },
-    "clean": {},
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
-    },
-    "test": {
-      "dependsOn": ["build"],
-      "inputs": [
-        "src/**/*.ts",
-        "test/**/*.ts",
-        "services/**/*.ts",
-        "components/**/*.ts",
-        "components/**/*.vue",
-        "pages/**/*.ts",
-        "pages/**/*.vue"
-      ]
+    "clean": {
+      "cache": false
     },
     "lint": {}
   }

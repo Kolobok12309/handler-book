@@ -16,11 +16,11 @@
     "release:major": "yarn run release -- --release-as major"
   },
   "engines": {
-    "node": "16.x",
-    "pnpm": "7.25.x"
+    "node": "18.x",
+    "pnpm": "8.9.x"
   },
+  "packageManager": "pnpm",
   "devDependencies": {
     "cross-env": "^7.0.3"
-  },
-  "packageManager": "pnpm@7.25.0"
+  }
 }

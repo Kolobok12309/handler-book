@@ -25,9 +25,9 @@
   },
   "engines": {
     "node": "18.x",
-    "pnpm": "8.9.x"
+    "pnpm": "8.9.2"
   },
-  "packageManager": "pnpm",
+  "packageManager": "pnpm@8.9.2",
   "devDependencies": {
     "rimraf": "^5.0.5",
     "unbuild": "^2.0.0"

@@ -38,9 +38,9 @@
   },
   "engines": {
     "node": "18.x",
-    "pnpm": "8.9.x"
+    "pnpm": "8.9.2"
   },
-  "packageManager": "pnpm",
+  "packageManager": "pnpm@8.9.2",
   "dependencies": {
     "@hb/types": "workspace:*",
     "@nestjs-modules/mailer": "^1.10.3",

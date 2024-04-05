@@ -1,21 +1,21 @@
-// eslint-disable-next-line
-const process = require('process');
+import type { DataSourceOptions } from 'typeorm';
 
-const getEnv = (name, defaultValue = undefined) =>
+export const getEnv = (name, defaultValue = undefined) =>
   process.env[name] !== undefined ? process.env[name] : defaultValue;
 
-const isProd = getEnv('NODE_ENV') === 'production';
+export const isProd = getEnv('NODE_ENV') === 'production';
 
 // eslint-disable-next-line no-nested-ternary
 const synchronize = getEnv('DB_SYNC', !isProd);
 const envSsl = getEnv('DB_SSL');
-const ssl = envSsl && envSsl !== 'false'
-  ? {
-    rejectUnauthorized: envSsl === 'strict',
-  }
-  : false;
+const ssl =
+  envSsl && envSsl !== 'false'
+    ? {
+        rejectUnauthorized: envSsl === 'strict',
+      }
+    : false;
 
-const connectionOptions = {
+const connectionOptions: DataSourceOptions = {
   type: 'postgres',
   synchronize,
   ssl,
@@ -27,15 +27,15 @@ const connectionOptions = {
   ],
 };
 
-let mainConfig;
+let defaultConfig: DataSourceOptions;
 
 if (getEnv('DATABASE_URL', false)) {
-  mainConfig = {
+  defaultConfig = {
     ...connectionOptions,
     url: getEnv('DATABASE_URL'),
   };
 } else {
-  mainConfig = {
+  defaultConfig = {
     ...connectionOptions,
     host: getEnv('DB_HOST', 'localhost'),
     port: getEnv('DB_PORT', 5432),
@@ -45,20 +45,4 @@ if (getEnv('DATABASE_URL', false)) {
   };
 }
 
-module.exports = [
-  {
-    ...mainConfig,
-    migrations: [isProd ? 'dist/migrations/*.js' : 'migrations/*.ts'],
-    cli: {
-      migrationsDir: 'migrations',
-    },
-  },
-  {
-    ...mainConfig,
-    name: 'seed',
-    migrations: [isProd ? 'dist/seeds/*.js' : 'seeds/*.ts'],
-    cli: {
-      migrationsDir: 'seeds',
-    },
-  },
-];
+export { defaultConfig };

@@ -8,7 +8,7 @@ import {
 
 import { Role, User } from '@hb/types';
 
-import { FileEntity } from '@/storage/entities';
+import { FileEntity } from '@/files/entities';
 
 import { RefreshTokenEntity } from './refresh-token.entity';
 

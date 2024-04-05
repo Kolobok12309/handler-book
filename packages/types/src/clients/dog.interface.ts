@@ -1,4 +1,4 @@
-import { File } from '../storage';
+import { File } from '../files';
 import { Show } from '../show';
 
 import { Sex } from './sex.interface';
@@ -6,6 +6,9 @@ import { Person } from './person.interface';
 import { Title } from './title.interface';
 import { DogClass } from './dog-class.interface';
 
+/**
+ * Собака
+ */
 export interface Dog {
   id: number;
 
@@ -23,9 +26,9 @@ export interface Dog {
 
   color: string;
 
-  owner?: Person;
+  // owner?: Person;
 
-  breeder?: Person;
+  // breeder?: Person;
 
   titles: Title[];
 

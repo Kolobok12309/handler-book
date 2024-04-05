@@ -14,9 +14,7 @@ import {
 
 import { Dog, Sex } from '@hb/types';
 
-import type { FileDto } from '@/storage/dto';
-
-import type { PersonDto } from '../../person/dto';
+import type { FileDto } from '@/files/dto';
 
 const { CREATE, UPDATE } = CrudValidationGroups;
 
@@ -117,11 +115,5 @@ export class DogDto implements Omit<Dog, 'titles' | 'class' | 'shows'> {
   avatar?: FileDto;
 
   @ApiProperty()
-  breeder?: PersonDto;
-
-  @ApiProperty()
   files?: FileDto[];
-
-  @ApiProperty()
-  owner?: PersonDto;
 }

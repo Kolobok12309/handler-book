@@ -1,4 +1,4 @@
 export * from './users';
-export * from './storage';
+export * from './files';
 export * from './clients';
 export * from './show';

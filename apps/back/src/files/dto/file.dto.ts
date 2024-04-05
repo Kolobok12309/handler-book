@@ -2,16 +2,16 @@ import { ApiProperty } from '@nestjs/swagger';
 
 import { File, FileCategory } from '@hb/types';
 
-export class FileDto implements Exclude<File, 'uploadedBy' | 'key'> {
+export class FileDto implements File {
   @ApiProperty({
     description: 'File id',
   })
   id: number;
 
   @ApiProperty({
-    description: 'File name with extension',
+    description: 'File url',
   })
-  name: string;
+  url: string;
 
   @ApiProperty({
     description: 'File category',
@@ -19,9 +19,9 @@ export class FileDto implements Exclude<File, 'uploadedBy' | 'key'> {
   category: FileCategory;
 
   @ApiProperty({
-    description: 'File url',
+    description: 'File name with extension',
   })
-  url: string;
+  name: string;
 
   @ApiProperty({
     description: 'Date of file upload',

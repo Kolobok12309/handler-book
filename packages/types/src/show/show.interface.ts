@@ -1,5 +1,5 @@
 import { Person, Dog, Title, DogClass } from '../clients';
-import { File } from '../storage';
+import { File } from '../files';
 
 import { ResultMark } from './mark.interface';
 import { ShowRank } from './show-rank.interface';

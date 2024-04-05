@@ -1,8 +1,13 @@
+/**
+ * Титул собаки (CAC, CACIB, etc)
+ */
 export interface Title {
   id: number;
 
+  /** Название */
   name: string;
 
+  /** Количество титулов этого вида */
   count?: number;
 }
 

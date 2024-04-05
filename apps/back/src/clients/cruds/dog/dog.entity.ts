@@ -13,9 +13,8 @@ import {
 import { Dog, Sex } from '@hb/types';
 
 import { UserEntity } from '@/users';
-import { FileEntity } from '@/storage';
+import { FileEntity } from '@/files';
 
-import { PersonEntity } from '../person';
 import { BreedEntity } from '../breed';
 
 @Entity('dogs', {
@@ -87,13 +86,6 @@ export class DogEntity implements Omit<Dog, 'titles' | 'class' | 'shows'> {
   @JoinColumn()
   avatar: FileEntity;
 
-  @ManyToOne(() => PersonEntity, {
-    onDelete: 'SET NULL',
-    nullable: true,
-    eager: true,
-  })
-  breeder: PersonEntity;
-
   // TODO Mb replace it to OneToMany and update FileEntity
   // Not OneToMany, because typeorm not support
   // id's array in entity
@@ -102,12 +94,6 @@ export class DogEntity implements Omit<Dog, 'titles' | 'class' | 'shows'> {
   })
   @JoinTable()
   files: FileEntity[];
-
-  @ManyToOne(() => PersonEntity, {
-    onDelete: 'CASCADE',
-    eager: true,
-  })
-  owner: PersonEntity;
 
   @ManyToOne(() => UserEntity, {
     onDelete: 'CASCADE',

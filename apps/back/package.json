@@ -24,17 +24,16 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "ts-node -r tsconfig-paths/register ../../node_modules/typeorm/cli.js",
-    "migration:generate": "pnpm typeorm migration:generate -n",
-    "migration:create": "pnpm typeorm migration:create -n",
-    "migration:run": "pnpm typeorm migration:run",
-    "migration:revert": "pnpm typeorm migration:revert",
-    "seed:generate": "pnpm typeorm migration:generate -c seed -n ",
-    "seed:create": "pnpm typeorm migration:create -c seed -n",
-    "seed:run": "pnpm typeorm migration:run -c seed",
-    "seed:revert": "pnpm typeorm migration:revert -c seed",
-    "migrations:run": "pnpm migration:run && yarn run seed:run",
-    "migrations:prod": "cross-env NODE_ENV=production yarn run typeorm migration:run && yarn run typeorm migration:run -c seed"
+    "typeorm": "ts-node -r tsconfig-paths/register --project tsconfig.json ./node_modules/typeorm/cli.js",
+    "migration:generate": "pnpm typeorm migration:generate -d ./typeorm/data-source.ts",
+    "migration:create": "pnpm typeorm migration:create",
+    "migration:run": "pnpm typeorm migration:run -d ./typeorm/data-source.ts",
+    "migration:revert": "pnpm typeorm migration:revert -d ./typeorm/data-source.ts",
+    "seed:create": "pnpm typeorm migration:create",
+    "seed:run": "pnpm typeorm migration:run -d ./typeorm/seed-data-source.ts",
+    "seed:revert": "pnpm typeorm migration:revert -d ./typeorm/seed-data-source.ts",
+    "migrations:run": "pnpm migration:run && pnpm seed:run",
+    "migrations:prod": "cross-env NODE_ENV=production pnpm typeorm migration:run && pnpm typeorm migration:run -d ./typeorm/seed-data-source.ts"
   },
   "engines": {
     "node": "18.x",
@@ -79,7 +78,7 @@
     "swagger-ui-express": "^5.0.0",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typeorm": "^0.3.19",
+    "typeorm": "^0.3.20",
     "typescript": "^5.3.3"
   },
   "devDependencies": {

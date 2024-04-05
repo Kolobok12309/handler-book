@@ -1,4 +1,4 @@
-import { File } from '../storage';
+import { File } from '../files';
 
 export interface Person {
   id: number;
